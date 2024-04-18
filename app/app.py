@@ -5,10 +5,9 @@ from fastapi.templating import Jinja2Templates
 #from app.route.books import router as book_router
 #from app.route.users import router as users_router
 from app.database import create_database, delete_database
-
+from app.route.autres import router as autres_router
 app = FastAPI(title="Bomel et compagnie")
-#app.include_router(book_router)
-#app.include_router(users_router)
+app.include_router(autres_router)
 app.mount("/static", StaticFiles(directory="././static"), name='static')
 templates = Jinja2Templates(directory="././templates")
 
@@ -27,7 +26,7 @@ def on_shutdown():
 
 @app.get("/")
 def root():
-    return RedirectResponse("users/login", status_code=status.HTTP_303_SEE_OTHER)
+    return RedirectResponse("autres/home", status_code=status.HTTP_303_SEE_OTHER)
 
 
 

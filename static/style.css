@@ -1,0 +1,31 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+  }
+  
+header {
+    background-color: #333; /* Couleur de fond de la bande */
+    padding: 10px 0; /* Ajoute un espace intérieur en haut et en bas */
+  }
+  
+nav ul {
+    list-style-type: none; /* Supprime les puces de la liste */
+    margin: 0;
+    padding: 0;
+    text-align: center; /* Centre les éléments de la liste */
+  }
+  
+nav ul li {
+    display: inline; /* Affiche les éléments de la liste en ligne */
+  }
+  
+nav ul li a {
+    display: inline-block; /* Transforme les liens en blocs pour les styliser */
+    color: #fff; /* Couleur du texte */
+    text-decoration: none; /* Supprime les soulignements des liens */
+    padding: 10px 20px; /* Ajoute un espace intérieur aux liens */
+  }
+  
+nav ul li a:hover {
+    background-color: #555; /* Couleur de fond au survol */
+  }

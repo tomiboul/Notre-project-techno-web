@@ -14,8 +14,7 @@ class Base(DeclarativeBase):
 
 
 def create_database():
-    #from app.models.users import User   
-    #from app.models.books import Book
+    
     Base.metadata.create_all(engine)
    
 
@@ -32,15 +31,6 @@ def create_database():
     #for user in default_users:
     #    session.delete(user)
     
-    #for book in default_books:
-    #    session.delete(book)
-    
-    """
-    default_books = [Book(id=str(uuid4()), nom='Star Wars', auteur='George Lucassetout', editeur='lucasbooks', description='bateaux volants qui tirent des lasers c fou', date_creation='20-03-2002', proprietaire_id='26fc696c-bbc9-4c89-bdb6-baa9eebcd446', proprietaire=session.query(User).get('26fc696c-bbc9-4c89-bdb6-baa9eebcd446')),
-                     Book(id=str(uuid4()), nom='dictionnaire édition 1987', auteur='George Washington', editeur='larousse', description='bateaux volants qui tirent des lasers c fou', date_creation='31-07-2017', proprietaire_id='26fc696c-bbc9-4c89-bdb6-baa9eebcd446', proprietaire=session.query(User).get('26fc696c-bbc9-4c89-bdb6-baa9eebcd446')),
-                     Book(id=str(uuid4()), nom='Lancé de thomates', auteur='Tomiboul', editeur='letoms', description='Thomas joue au baseball', date_creation='20-01-2090', proprietaire_id='2df8430a-982f-4e59-a824-59196df0f5a3', proprietaire=session.query(User).get('2df8430a-982f-4e59-a824-59196df0f5a3'))]
-    """
-    #session.add_all(default_books)
     
     #session.add_all(default_users)
     

@@ -8,7 +8,7 @@ class Car(Base):
     id = mapped_column(String(100), primary_key=True)
     nomModel = mapped_column(String(100))
     marque = mapped_column(String(100))
-    description = mapped_column(String(200))
+    description = mapped_column(String(200)) 
     date_fabrication = mapped_column(String(10))
     etat = mapped_column(String(100))
     image = mapped_column(String(100)) # a changer
