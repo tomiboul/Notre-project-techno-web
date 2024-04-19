@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+
+<div class="form-group">
+    <form action="/users/signin" method="post" class="decalageplus">
+
+        <h1>Créer un compte</h1>
+
+
+        <label for="email" class="my-3">Adresse mail </label>
+        <input type="text" class="form-control" id="email" name="email" placeholder="*" value="" />
+       
+        <label for="name">Nom </label>
+        <input type="text" class="form-control" id="name" name="name" placeholder="*" value="" />
+        
+        <label for="firstname">Prénom </label>
+        <input type="text" class="form-control" id="firstname" name="firstname" placeholder="*" value ="" />
+        
+        <label for="password">Mot de passe</label>
+        <input type="text" class="form-control" id="password" name="password" placeholder ="*" value ="" />
+
+        <label for="confirmedpassword">Confirmez le mot de passe</label>
+        <input type="text" class="form-control" id="confirmedpassword" name="confirmedpassword" placeholder ="*" value ="" />
+
+        <button type="submit" class="btn btn-warning my-4" href="/users/login"> S'inscrire</button>
+
+        <div>
+            <a class="btn btn-outline-dark mx-2" href="/users/login">Retour à la page de connexion</a>
+        </div>
+        
+    </form>
+</div>
+
+
+{% endblock %}

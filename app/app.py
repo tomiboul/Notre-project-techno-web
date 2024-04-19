@@ -43,7 +43,7 @@ def root():
 
 
 @app.exception_handler(HTTPException)
-def Exception(request: Request, exc: HTTPException):
+def Exceptionhandler(request: Request, exc: HTTPException):
     return templates.TemplateResponse(
         "exceptions.html",
         context={
