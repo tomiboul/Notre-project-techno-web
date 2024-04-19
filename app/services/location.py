@@ -25,3 +25,42 @@ def get_all_car_for_location() -> list[CarSchema]:
                                         ))    
         return car_location_list
 
+def get_car_for_location_by_id(car_id : CarSchema): # j'aimerais également faire un système de coontrole F pour trouvé une voiture via son id ou son nom
+    with Session() as session :
+        statement = select(Car).where(Car.id.like(car_id))
+        carId = session.scalars(statement).unique().all()
+
+        shearch_car = CarSchema(
+                                id = car_id,
+                                nomModel=carId.nomModel, 
+                                marque=carId.marque,
+                                description=carId.description,
+                                date_fabrication = carId.date_fabrication,
+                                etat=carId.etat,
+                                image = carId.image,
+                                proprietaire_id= carId.proprietaire_id
+                                )
+
+        return shearch_car
+    
+
+def update_car_for_location(updateCar : CarSchema):
+    with Session() as session :
+        statement = select(Car).where(Car.id.like(updateCar.id))
+        old_car = session.scalars(statement).unique().all()
+
+        if updateCar.id is not None:
+            if updateCar.nomModel is not None and updateCar.nomModel.strip:
+                old_car.nomModel = updateCar.nomModel
+            if updateCar.marque is not None and updateCar.marque.strip:
+                old_car.marque = updateCar.marque
+            if updateCar.description is not None and updateCar.description.strip:
+                old_car.description = updateCar.description
+            if updateCar.date_fabrication is not None and updateCar.date_fabrication.strip:
+                old_car.date_fabrication = updateCar.date_fabrication
+            if updateCar.etat is not None and updateCar.etat.strip:
+                old_car.etat = updateCar.etat
+            if updateCar.image is not None and updateCar.image.strip:
+                old_car.image = updateCar.image
+            if updateCar.proprietaire_id is not None and updateCar.proprietaire_id.strip:
+                old_car.proprietaire_id = updateCar.proprietaire_id
