@@ -2,7 +2,38 @@
 
 {% block content %}
 
-
+<div>
+    <h1 class = "decalage">Veuillez vous connecter pour avoir accès aux services de la librairie 
+    </h1>
+    
+    </div>
+    
+    <form action="/users/login" method="post" class="decalageplus">
+    
+        <div class="form-group">
+            <label for="email">Email </label>
+            <input type="text" class="form-control" id="email"
+                   name="email" placeholder="" />
+        </div>
+        
+        <div class="form-group">
+            <label for="password">Mot de passe</label>
+            <input type="password" class="form-control" id="password"
+                   name="password" />
+        </div>
+    
+        <div>
+        <button type="submit" class="btn btn-success my-4" href="/library/books"> Connexion </button>
+        <a class="btn btn-success mx-4 nouvelleConnexion" href="signin"> Créer un compte </a>
+        </div>
+        
+    
+    </form>
+    
+    <div><a class="btn btn-success mx-4 nouvelleConnexion" href="/library/home"> Continuer en tant qu'invité </a></div>
+    
+    
+    
 
 
 

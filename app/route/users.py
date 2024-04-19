@@ -1,7 +1,6 @@
 from typing import Annotated
 from uuid import uuid4
 from fastapi import APIRouter, HTTPException, status, Depends, Body, Request, Form
-from fastapi.responses import JSONResponse
 from fastapi.templating import Jinja2Templates
 from app.login_manager import login_manager
 from app.services.users import get_user_by_email, get_all_users
