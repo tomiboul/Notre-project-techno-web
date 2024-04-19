@@ -9,7 +9,10 @@ class User(Base):
     name = mapped_column(String(30))
     firstname = mapped_column(String(30))
     email = mapped_column(String(30))
-    telephone = mapped_column(String(10))
+    phone = mapped_column(String(14))
     hashed_password = mapped_column(String(32))
     admin = mapped_column(Boolean)
-    # blocked = mapped_column(Boolean)
+    blocked = mapped_column(Boolean)
+    adresse = mapped_column(String(64))
+
+    

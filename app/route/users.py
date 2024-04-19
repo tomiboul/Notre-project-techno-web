@@ -42,7 +42,7 @@ def login_route(
         data={'sub': user.id}
     )
     
-    response = RedirectResponse('/library/home', status_code = 302)
+    response = RedirectResponse('/autres/home', status_code = 302)
     response.set_cookie(
         key=login_manager.cookie_name,
         value=access_token,
@@ -91,18 +91,10 @@ def signin_ask(request : Request):
     )
 
 @router.post('/signin')
-def signin(request : Request, name : Annotated[str, Form()], firstname: Annotated[str, Form()], email: Annotated[str, Form()], telephone: Annotated[str, Form()] , password: Annotated[str, Form()], confirmedpassword: Annotated[str, Form()]) :
-    email_not_in_db = True
-    if get_user_by_email(email) is not None :
-        email_not_in_db = False
-
-    password_match = True
-    if confirmedpassword != password :
-        password_match = False
-
+def signin(request : Request, name : Annotated[str, Form()], firstname: Annotated[str, Form()], email: Annotated[str, Form()], phone: Annotated[str, Form()], adresse : Annotated[str,Form()], password: Annotated[str, Form()], confirmedpassword: Annotated[str, Form()]) :
     if not (name == "" or firstname =="" or email =="" or password=="" or confirmedpassword =="") :
-        if email_not_in_db :
-            if password_match :
+        if get_user_by_email(email) is None :
+            if not (confirmedpassword != password) :
                 encoded_password = password.encode()
                 hashed_password = hashlib.sha3_256(encoded_password).hexdigest()
                 new_user_data = {
@@ -112,7 +104,8 @@ def signin(request : Request, name : Annotated[str, Form()], firstname: Annotate
                     "firstname" : firstname,
                     "hashed_password" : hashed_password,
                     "admin" : False,
-                    "blocked" : False
+                    "phone" : phone,
+                    "adresse" : adresse
                 }
                 try:
                     user_data = UserSchema.model_validate(new_user_data)
@@ -120,7 +113,7 @@ def signin(request : Request, name : Annotated[str, Form()], firstname: Annotate
                     status_code=status.HTTP_400_BAD_REQUEST
                     detail="informations invalides pour le nouvel utilisateur"
                     return templates.TemplateResponse('exceptions.html', context={'request':request, 'status_code': 400, 'message': 'Les informations ne sont pas valides', 'redir':'inscription'})
-                    #return RedirectResponse(url="/library/exceptions", status_code=300)
+                    
                 services.save_user(user_data)
                 return RedirectResponse(url="/users/login", status_code=302)
             else :
