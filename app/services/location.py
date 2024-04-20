@@ -64,4 +64,5 @@ def update_car_for_location(updateCar : CarSchema):
                 old_car.image = updateCar.image
             if updateCar.proprietaire_id is not None and updateCar.proprietaire_id.strip:
                 old_car.proprietaire_id = updateCar.proprietaire_id
+                
         session.commit()
