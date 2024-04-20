@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+
+<h1 class = "centeredTitle"> Error {{status_code}} </h1>
+<p class ="centeredTitle">{{message}}</p>
+
+{%if redir == 'connexion' %}
+<div class = centeredTitle>
+    <a class="btn btn-outline-dark mx-2 retour" href="/users/logout">Retour à la page d'accueil (déconnexion)</a>
+</div>
+{%endif%}
+
+{%if redir == 'inscription'%}
+<div class = centeredTitle>
+    <a class="btn btn-outline-dark mx-2 retour" href="/users/signin">Retour à la page de connection</a>
+</div>
+{%endif%}
+
+{%if redir == 'liste' %}
+<div class = centeredTitle>
+    <a class="btn btn-outline-dark mx-2 retour" href="/location/locationCar">Retour au catalogue des voitures</a>
+</div>
+{%endif%}
+
+{%if redir == 'profil'%}
+<div class = centeredTitle>
+    <a class="btn btn-outline-dark mx-2 retour" href="/users/me">Retour au profil</a>
+</div>
+
+{%endif%}
+{% endblock %}

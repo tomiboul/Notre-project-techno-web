@@ -9,7 +9,7 @@ from app.models.voiture import Car
 
 def get_all_car_for_location() -> list[CarSchema]:
     with Session() as session :
-        statement = select(Car) #pas oublié le where
+        statement = select(Car)
         car_data = session.scalars(statement).unique().all()
 
         car_location_list = []
@@ -64,3 +64,4 @@ def update_car_for_location(updateCar : CarSchema):
                 old_car.image = updateCar.image
             if updateCar.proprietaire_id is not None and updateCar.proprietaire_id.strip:
                 old_car.proprietaire_id = updateCar.proprietaire_id
+        session.commit()
