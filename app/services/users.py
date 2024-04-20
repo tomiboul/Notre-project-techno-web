@@ -72,3 +72,12 @@ def get_all_users() :
             
         return users_list
 
+def change_password(new_password, user_id) :
+    with Session() as session :
+        statement = select(User).where(User.id.like(user_id))
+        u = session.scalar(statement)
+
+        if u is not None :
+            u.hashed_password = new_password
+
+        session.commit()

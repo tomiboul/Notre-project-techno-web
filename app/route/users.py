@@ -15,10 +15,10 @@ router = APIRouter(prefix="/users", tags=["Users"])
 templates = Jinja2Templates(directory="./templates")
 
 @router.get("/login", response_class=HTMLResponse)
-def login_route_demande(request: Request):
+def login_route_demande(request: Request, user:UserSchema =Depends(login_manager.optional)):
     return templates.TemplateResponse(
         "login.html",
-        context={'request': request}
+        context={'request': request, 'current_user':user}
     )
 
 @router.post("/login")
@@ -53,7 +53,7 @@ def login_route(
 
 
 @router.get('/logout')
-def ask_logout(request : Request, user: UserSchema = Depends(login_manager)) :
+def ask_logout(request : Request, user: UserSchema = Depends(login_manager.optional)) :
     return templates.TemplateResponse(
         'logout.html',
         context = {'request': request, 'current_user':user}
@@ -84,14 +84,14 @@ def current_user_route(
     
 
 @router.get('/signin')
-def signin_ask(request : Request):
+def signin_ask(request : Request, user:UserSchema=Depends(login_manager.optional)):
     return templates.TemplateResponse(
         "signin.html",
-        context = {'request': request}
+        context = {'request': request, 'current_user':user}
     )
 
 @router.post('/signin')
-def signin(request : Request, name : Annotated[str, Form()], firstname: Annotated[str, Form()], email: Annotated[str, Form()], phone: Annotated[str, Form()], adresse : Annotated[str,Form()], password: Annotated[str, Form()], confirmedpassword: Annotated[str, Form()]) :
+def signin(request : Request, name : Annotated[str, Form()], firstname: Annotated[str, Form()], email: Annotated[str, Form()], phone: Annotated[str, Form()], adresse : Annotated[str,Form()], password: Annotated[str, Form()], confirmedpassword: Annotated[str, Form()], user:UserSchema=Depends(login_manager.optional)) :
     if not (name == "" or firstname =="" or email =="" or password=="" or confirmedpassword =="") :
         if get_user_by_email(email) is None :
             if not (confirmedpassword != password) :
@@ -156,20 +156,6 @@ def block(request : Request,id : str):
     services.change_blocked_status(id)
     return RedirectResponse("/users/users_list", status_code=status.HTTP_303_SEE_OTHER)
 
-@router.get('/perm_admin/{id}')
-def ask_adminperm_change(request : Request, id : str, user: UserSchema = Depends(login_manager)): 
-    if user.admin == True :
-        return templates.TemplateResponse(
-            'adminchg.html',
-            context={"request": request,"id": id}
-        )
-    else :
-        return templates.TemplateResponse('exceptions.html', context = {'status_code' : 400, 'message': 'Vous n\'avez pas le droit de donner les permissions admin', 'redir':'connexion'})
-
-@router.post('/perm_admin/{id}')
-def permchange(request : Request,id : str):
-    services.change_admin_status(id)
-    return RedirectResponse("/users/users_list", status_code=status.HTTP_303_SEE_OTHER)
 
 @router.get('/password')
 def passwordchange_ask(request : Request, user:UserSchema = Depends(login_manager)) :
@@ -179,7 +165,7 @@ def passwordchange_ask(request : Request, user:UserSchema = Depends(login_manage
     )
 
 @router.post('/password')
-def passwordchange(request : Request, password : Annotated[str,Form()], new_password : Annotated[str,Form()], new_password_confirmed : Annotated[str,Form()], user:UserSchema = Depends(login_manager)) :
+def passwordchange(request : Request, password : Annotated[str,Form()], new_password : Annotated[str,Form()], new_password_confirmed : Annotated[str,Form()], user:UserSchema = Depends(login_manager.optional)) :
     encoded_password = password.encode()
     hashed_password = hashlib.sha3_256(encoded_password).hexdigest()
     if hashed_password == user.hashed_password : 

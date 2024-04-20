@@ -1,7 +1,35 @@
 {% extends "base.html" %}
 
 {% block content %}
+<div>
+    <table class="table">
+        <thead class="thead-dark">
+            <tr>
+                <th>id</th>
+                <th>email</th>
+                <th>name</th>
+                <th>last_name</th>
+                <th>bloqué</th>
+                <th>permis</th>
+            </tr>
 
+        </thead>
+        <tbody>
+            {%for user in users%}
+            <tr>
+                <td>{{user.id}}</td>
+                <td>{{user.name}}</td>
+                <td>{{user.firstname}}</td>
+                <td>{{user.email}}</td>
+                <td>{{user.admin}}</td>
+                <td>{{user.blocked}}</td>
+            </tr>
+            {%endfor%}
+        </tbody>
+    </table>
+    <p>Nombre d'utilisateurs:{{number_users}}</p>
+    <a>href="/library/home" Retour à l'acueil</a>
+</div>
 
 
 

@@ -1,7 +1,33 @@
 {% extends "base.html" %}
-
+{% from "myMacro.html" import show_cars_for_location %}
 {% block content %}
+<h1 class="decalageplus"> Nos véhicules mis en location : </h1>
+<div>
+<table>
+    <thead class="thead-dark">
+    <tr>
+        <th scope="col">le numéro du modèle</th>
+        <th scope="col">Le modèle</th>
+        <th scope="col">La marque du véhicule</th>
+        <th scope="col">Etat du véhicule</th>
+        <th scope="col">Image du véhicule</th> 
+    </tr> 
+    </thead>
+    <tbody>
+        <tr>
+            {% for car in cars %} 
+            {{show_cars_for_location(cars.id,cars.nomModel,cars.marque,cars.description,cars.date_fabrication,cars.etat, cars.image,cars.prix)}}  
+            {% endfor %}
+        </tr>
+    </tbody>
+    </table>
+</div>
 
 
+<form action="/users/logout" method="post" class="decalageplus">
+    
+        <button type="submit" class="btn btn-success my-4" href="/users/logout">Confirmer </button>
+        <a class="btn btn-dark mx-2 retour" href="/autres/home">Annuler</a>    
+</form>
 
 {% endblock %}

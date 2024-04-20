@@ -1,0 +1,78 @@
+{% macro show_cars_for_location(id,nomModel,marque,description,date_fabrication,etat, image,prix) %}
+    <tr>
+        
+        <td>{{ id }}</td>
+
+        <td>{{ nomModel }}</td>
+
+        <td>{{ marque }}</td>
+
+        <td>
+        {% if description|length < 1 %}
+            /
+        {% else %}
+            {{description}}
+        {% endif %}
+        </td>
+        
+        <td>
+        {% if etat|length < 1 %}
+            /
+        {% else %}
+            {{etat}}
+        {% endif %}
+        </td>
+        
+        <td>{{date_creation}}</td>
+
+        <td>{{prix}}</td>
+
+    </tr>
+
+{% endmacro %}
+
+{% macro show_user(id,email,name,firstname,password,admin, blocked, current_user) %}
+    <tr>
+        
+        <td>{{ id }}</td>
+
+        <td>{{ email }}</td>
+
+        <td>{{ name }}</td>
+
+        <td>{{ firstname }}</td>
+        
+        <td>
+        {% if admin == True %}
+            Oui
+        {% else %}
+            Non
+        {% endif %}
+        </td>
+
+        
+        
+        {% if blocked == False %}
+        <td>Non</td>
+        <td><a class="btn btn-outline-danger mx-4" href="block/{{id}}">Bloquer l'utilisateur</a></td>
+        {% else %}
+        <td>Oui</td>
+        <td><a class="btn btn-outline-primary mx-4" href="block/{{id}}">Débloquer l'utilisateur</a></td>
+        {% endif %}
+        
+        
+        {% if admin == True %}
+        
+        <td><a class="btn btn-outline-danger mx-4" href="perm_admin/{{id}}" >Enlever les permissions d'administrateur</a></td>
+        {% else %}
+            {%if email == "palplatine@gmail.com" %}
+            <td><a class="btn btn-outline-primary mx-4" href="perm_admin/{{id}}" >Donner les pleins pouvoirs</a></td>
+            {% else %}
+            <td><a class="btn btn-outline-primary mx-4" href="perm_admin/{{id}}" >Donner les permissions d'administrateur</a></td>
+            {%endif%}
+        {% endif %}
+        
+        
+    </tr>
+
+{% endmacro %}

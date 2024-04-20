@@ -16,5 +16,6 @@ templates = Jinja2Templates(directory="./templates")
 
 
 @router.get('/home')
-def home(request : Request):  
-    return templates.TemplateResponse('home.html', context={'request':request})
+def home(request : Request, user:UserSchema = Depends(login_manager.optional)):  
+    return templates.TemplateResponse('home.html', context={'request':request, 'current_user':user})
+
