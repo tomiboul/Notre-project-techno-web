@@ -1,7 +1,26 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div class="container-fluid">
+<div class="row" style="margin-top: 5%;">
+     
+     <div class="col">
+        <div class="card" style="padding: 3%; margin-left: 20%;">
+            <h2>Vendre mon véhicule à un particulier</h2>
+            <p style="margin-bottom: 10%;">Sur notre plateforme, vous avez la possibilité de mettre votre véhicule en vente et de le proposer à l'achat aux autres utilisateurs. Cela vous permet de toucher une audience qualifiée et intéressée, 
+                facilitant ainsi des transactions rapides et efficaces. En choisissant ce service, vous bénéficiez d'une visibilité accrue pour votre annonce et d'une communauté active d'acheteurs potentiels, 
+                garantissant une expérience de vente optimale.</p>
+            <a class="btn btn-warning" href="/vente/particulier">C'est ça</a>
+        </div>
+     </div>
+     <div class="col">
+        <div class="card" style="padding: 3%; margin-right: 20%;">
+            <h2>Nous vendre votre véhicule</h2>
+            <p style="margin-bottom: 10%;">Nous revendre votre véhicule à un prix estimé par nos experts. Se basant sur plusieurs facteurs tels que le kilométrage, les normes environnementales et bien d'autres, nos experts sauront fournir un prix estimé justifié.
+            Nous vous promettons un prix plus que raisonnable pour votre véhicule. Évitez de vous prendre la tête et privilégiez la facilité en choisissant de nous revendre directement votre véhicule !
+            </p>
+            <a class="btn btn-warning" href="/vente/professionnel">C'est ça</a>
+        </div>
+     </div>
      
 </div>
 {% endblock %}

@@ -12,17 +12,11 @@ from app.login_manager import login_manager
 router = APIRouter(prefix="/vente", tags=["Vente"])
 templates = Jinja2Templates(directory="./templates")
 
-@router.get ('/vente/client',response_class=HTMLResponse)
+@router.get ('/client',response_class=HTMLResponse)
 def get_car_sale(request: Request,user:UserSchema=Depends(login_manager.optional)):
-    if user is None:
-        raise HTTPException(status_code=404,detail="you're not connected")
-    else:
-        return templates.TemplateResponse("vente.html",context={"request":request,'current_user':user})
+    return templates.TemplateResponse("vente.html",context={"request":request,'current_user':user})
     
     
-@router.get('/voiture{id}',response_class=HTMLResponse)
-def get_voiture_détail( request:Request , id:str):
-    if user is None:
-        raise HTTPException(status_code=404,detail="car not found")
-    else:
-        return templates.TemplateResponse("voiture_détail.html",{"request":request,})
+@router.get('/particulier',response_class=HTMLResponse)
+def get_vente_partic(request:Request, user:UserSchema=Depends(login_manager.optional)) :
+    return templates.TemplateResponse('ventePartic.html', context={'request':request, 'current_user':user})
