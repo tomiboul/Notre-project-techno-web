@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1 class="decalageplus"> Profil </h1>
+
+<ul class="list-group decalageplus">
+    <li class = list-group-item>Id : {{current_user.id}}</li>
+    <li class = list-group-item>Nom : {{current_user.name}}</li>
+    <li class = list-group-item>Prénom : {{current_user.firstname}}</li>
+    <li class = list-group-item>Email : {{current_user.email}}</li>
+    <li class = list-group-item>Numéro de téléphone : {{current_user.phone}}</li>
+    <li class = list-group-item>Adresse : {{current_user.adresse}}</li>
+    <li class = list-group-item>Bloqué : {{current_user.blocked}}</li>
+    <li class = list-group-item>Permissions d'administrateur : {{current_user.admin}}</li>
+    
+</ul>
+
+
+<a><a style = "text-align: centered" class ="btn btn-success mx-4 newbook pull-right" href="/users/password">Changer de mot de passe</a></a>
+<a><a style = "text-align: centered" class ="btn btn-success mx-4 newbook pull-right" href="/users/profilChange">Changer les infos de profil</a></a>
+<a style = "text-align: centered" class ="btn btn-success mx-4 newbook pull-right" href="/library/home">Retour à l'accueil</a>
+{% endblock %}

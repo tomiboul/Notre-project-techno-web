@@ -23,25 +23,26 @@ def get_user_by_id(id : str) :
     
 def get_user_by_email(email : str):
     with Session() as session:
-        statement = select(User).where(User.id.like(email))
+        statement = select(User).where(User.email.like(email))
         u = session.scalar(statement)
-        user = UserSchema(id=u.id, 
-                          name=u.name, 
-                          firstname = u.firstname, 
-                          email=email, 
-                          hashed_password = u.hashed_password, 
-                          adresse=u.adresse,
-                          phone=u.phone,
-                          admin = u.admin,
-                          blocked = u.blocked
-                          )
-        return user
-    
+        if u is not None:
+            user = UserSchema(id=u.id, 
+                            name=u.name, 
+                            firstname = u.firstname, 
+                            email=email, 
+                            hashed_password = u.hashed_password, 
+                            adresse=u.adresse,
+                            phone=u.phone,
+                            admin = u.admin,
+                            blocked = u.blocked
+                            )
+            return user
+        return None
 def save_user(user : UserSchema) :
     with Session() as session :
-        new_user = UserSchema(id=user.id,
+        new_user = User(id=user.id,
                               name=user.name,
-                              first=user.firstname,
+                              firstname=user.firstname,
                               email=user.email,
                               hashed_password=user.hashed_password,
                               adresse=user.adresse,
@@ -49,6 +50,8 @@ def save_user(user : UserSchema) :
                               phone=user.phone,
                               blocked = user.blocked
                               )
+        session.add(new_user)
+        session.commit()
         
 def get_all_users() :
     with Session() as session :

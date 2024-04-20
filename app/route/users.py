@@ -5,7 +5,7 @@ from fastapi.templating import Jinja2Templates
 from app.login_manager import login_manager
 from app.services.users import get_user_by_email, get_all_users
 from app.schemas.users import UserSchema
-from fastapi.responses import HTMLResponse
+from fastapi.responses import HTMLResponse, JSONResponse
 from pydantic import ValidationError
 from fastapi.responses import RedirectResponse
 import app.services.users as services
@@ -31,6 +31,7 @@ def login_route(
     hashed_password = hashlib.sha3_256(encoded_password).hexdigest()
     
     user = get_user_by_email(email)
+   
     if user is None or user.hashed_password != hashed_password:
         return HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
@@ -104,7 +105,8 @@ def signin(request : Request, name : Annotated[str, Form()], firstname: Annotate
                     "hashed_password" : hashed_password,
                     "admin" : False,
                     "phone" : phone,
-                    "adresse" : adresse
+                    "adresse" : adresse,
+                    "blocked" : False
                 }
                 try:
                     user_data = UserSchema.model_validate(new_user_data)

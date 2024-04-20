@@ -10,3 +10,5 @@ class UserSchema(BaseModel) :
     admin : bool
     phone : str=Field(min_length=0, max_length=14)
     blocked : bool
+
+   

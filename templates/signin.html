@@ -7,16 +7,26 @@
     <form action="/users/signin" method="post" class="decalageplus">
 
         <h1>Créer un compte</h1>
-
-
-        <label for="email" class="my-3">Adresse mail </label>
-        <input type="text" class="form-control" id="email" name="email" placeholder="*" value="" />
-       
-        <label for="name">Nom </label>
-        <input type="text" class="form-control" id="name" name="name" placeholder="*" value="" />
         
-        <label for="firstname">Prénom </label>
-        <input type="text" class="form-control" id="firstname" name="firstname" placeholder="*" value ="" />
+        <label for="email" class="my-3">Adresse mail </label>
+        <input type="text" class="form-control" id="email" name="email" placeholder="Adresse Email" value="" />
+        
+        <div class="row" style="margin-top: 1%;">
+            <div class="col">
+              Prénom
+              <input type="text" class="form-control" name="firstname" placeholder="Prénom" id="firstname">
+            </div>
+            <div class="col">
+              Nom
+              <input type="text" class="form-control" name ="name"placeholder="Nom" id="name" value="">
+            </div>
+        </div>
+        
+        <label for="phone">Numéro de téléphone</label>
+        <input type="tel" class="form-control" id="phone" name="phone" placeholder ="Numéro de téléphone" value ="" />
+
+        <label for="adresse">Adresse</label>
+        <input type="text" class="form-control" id="adresse" name="adresse" placeholder ="Adresse" value ="" />
         
         <label for="password">Mot de passe</label>
         <input type="text" class="form-control" id="password" name="password" placeholder ="*" value ="" />
