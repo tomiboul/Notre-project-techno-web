@@ -26,6 +26,7 @@ def login_route(
         request : Request,
         email: Annotated[str, Form()],
         password: Annotated[str, Form()],
+        user:UserSchema=Depends(login_manager.optional)
 ):
     encoded_password = password.encode()
     hashed_password = hashlib.sha3_256(encoded_password).hexdigest()
@@ -33,10 +34,9 @@ def login_route(
     user = get_user_by_email(email)
    
     if user is None or user.hashed_password != hashed_password:
-        return HTTPException(
-            status_code=status.HTTP_401_UNAUTHORIZED,
-            detail="Bad credentials."
-        )
+        return templates.TemplateResponse('exceptions.html', context={'request':request, 'status_code':401,'current_user':user, 'message':'L\'adresse email ou le mot de passe n\'est pas bon'})
+        
+
     
     access_token = login_manager.create_access_token(
         data={'sub': user.id}
