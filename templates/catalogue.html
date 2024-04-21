@@ -23,13 +23,15 @@
         <tbody>
             <tr>
                 {% for car in cars %} 
-                {{show_cars_for_location(cars.id,cars.nomModel,cars.marque,cars.description,cars.date_fabrication,cars.etat, cars.image, cars.prix)}}  
-            
+
+                {%if car.etat == extra %}
+                {{show_cars(car.id,car.nomModel,car.marque,car.description,car.date_fabrication,car.etat, car.image, car.prix)}}  
+                
                 <div class="row"></div>
                 <td>
-                    <a class="btn btn-outline-success mx-4 supp_livre" href="supp_livre/{{book.id}}"> Regarder le détail de ce véhicule </a>
+                    <a class="btn btn-outline-success mx-4 supp_livre" href="#"> Regarder le détail de ce véhicule </a>
                 </td>
-                
+                {%endif%}
                 {% endfor %}
             </tr>
             <tr>

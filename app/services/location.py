@@ -22,8 +22,8 @@ def get_all_car_for_location() -> list[CarSchema]:
                                         etat=car.etat,
                                         image = car.image,
                                         proprietaire_id= car.proprietaire_id,
-                                        prix = car.prix
-                                        #etat = car.etat
+                                        prix = car.prix,
+                                        vehType=car.vehType
                                         ))    
         return car_location_list
 

@@ -22,7 +22,8 @@ def get_all_car_for_sale() -> list[CarSchema]:
                                         etat=car.etat,
                                         image = car.image,
                                         proprietaire_id= car.proprietaire_id,
-                                        #etat=car.etat
+                                        prix=car.prix,
+                                        vehType=car.vehType
                                         ))    
         return car_list
 
@@ -40,7 +41,9 @@ def get_id_car(car_id : str) :
                                         date_fabrication = car.date_fabrication,
                                         etat=car.etat,
                                         image = car.image,
-                                        proprietaire_id= car.proprietaire_id
+                                        proprietaire_id= car.proprietaire_id,
+                                        vehType=car.vehType,
+                                        prix=car.prix
                                         ))    
         return car_list_id
 
@@ -48,25 +51,26 @@ def get_id_car(car_id : str) :
 def update_car(updateCar : CarSchema):
     with Session() as session :
         statement = select(Car).where(Car.id.like(updateCar.id))
-        old_Car = session.scalars(statement).unique().all()
+        old_Car = session.scalar(statement)
 
         if old_Car is not None :
-            if updateCar.id is not None and update_car.id.strip():
+            if updateCar.id is not None and updateCar.id.strip():
                 old_Car.id = updateCar.id 
-            if updateCar.nomModel is not None and update_car.nomModel.strip():
+            if updateCar.nomModel is not None and updateCar.nomModel.strip():
                 old_Car.nomModel = updateCar.nomModel 
-            if updateCar.marque is not None and update_car.marque.strip():
+            if updateCar.marque is not None and updateCar.marque.strip():
                 old_Car.marque = updateCar.marque 
-            if updateCar.description is not None and update_car.description.strip():
+            if updateCar.description is not None and updateCar.description.strip():
                 old_Car.description = updateCar.description 
-            if updateCar.date_fabrication is not None and update_car.date_fabrication.strip():
+            if updateCar.date_fabrication is not None and updateCar.date_fabrication.strip():
                 old_Car.date_fabrication = updateCar.date_fabrication 
-            if updateCar.etat is not None and update_car.etat.strip():
+            if updateCar.etat is not None and updateCar.etat.strip():
                 old_Car.etat = updateCar.etat 
-            if updateCar.image is not None and update_car.image.strip():
-                old_Car.image = updateCar.image 
-            if updateCar.proprietaire_id is not None and update_car.proprietaire_id.strip():
+            if updateCar.proprietaire_id is not None and updateCar.proprietaire_id.strip():
                 old_Car.proprietaire_id = updateCar.proprietaire_id 
+            if updateCar.vehType is not None and updateCar.vehType.strip():
+                old_Car.vehType = updateCar.vehType
+
         session.commit()
   
 def delete_car (deleteCar : CarSchema):
@@ -88,6 +92,7 @@ def save_car_for_sale(car:CarSchema):
     with Session() as session :
         new_car = Car(id=car.id, 
                       marque=car.marque,
+                      vehType=car.vehType,
                       nomModel=car.nomModel,
                       description=car.description,
                       date_fabrication=car.date_fabrication,
@@ -96,3 +101,5 @@ def save_car_for_sale(car:CarSchema):
                       proprietaire_id= car.proprietaire_id,
                       prix=car.prix
         )
+        session.add(new_car)
+        session.commit()

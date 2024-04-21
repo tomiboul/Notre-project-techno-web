@@ -3,9 +3,9 @@
 {% block content %}
 
 <div class="form-group"></div>
-    <form style ="padding :20px; border: 2px solid rgb(255, 193, 7)" action="/vente/particulier" method="post" class="decalageplus">
+    <form style ="padding :20px; border: 2px solid rgb(255, 193, 7)" action="/vente/particulier" method="post" class="decalageplus" enctype="multipart/form-data">
         
-            <div class="form-group">
+            
                 <label for="marque">Marque du véhicule</label>
                 <select style = "margin-top : 10px ;" class="form-control" id="marque" name="marque">
                   <optgroup label="Choississez une marque"></optgroup>
@@ -22,24 +22,54 @@
                   <option>Toyota</option> <option>Volkswagen (DAS AUTO)</option> <option>Volvo</option>                  
                 </select>
             
+                <label for="vehType" class="my-3">Type du véhicule</label>
+                <select style = "margin-top : 10px ;" class="form-control" id="vehType" name="vehType">
+                  <optgroup label="Choisissez un type"></optgroup>
+                  <option>Camionnette</option>
+                  <option>Petite voiture</option>
+                  <option>Moyenne voiture</option>
+                  <option>Grosse voiture</option>
+                  <option>Camion</option>
+                  <option>2 roues</option>
+                </select> 
+
             <div style = "margin-top : 13px ;" >
               Modèle
-              
-              <input style = "margin-top : 13px ;" type="text" class="form-control" name ="model" placeholder="Modèle" id="model" value="">
+              <input style = "margin-top : 13px ;" type="text" class="form-control" name ="modele" placeholder="Modèle" id="modele" value="">
             </div>
         
 
         <label for="adress" class="my-3">Adresse de retrait</label>
         <input type="text" class="form-control" id="adress" name="adress" placeholder="Adresse " value="" />
 
-        <label for="kilometrage" class="my-3">Kilométrage</label>
-        <input type="text" class="form-control" id="kilometrage" name="kilometrage" placeholder="Kilométrage " value="" />
+          <div class="row">
+            <div class="col">
+              <label for="kilometrage" class="my-3">Kilométrage</label>
+              <input type="text" class="form-control" id="kilometrage" name="kilometrage" placeholder="Kilométrage " value="" />
+            </div>
+            <div class="col">
+              <label for="prix" class="my-3">Prix désiré</label>
+              <input type="text" class="form-control" id="prix" name="prix" placeholder="Prix" value="" />
+            </div>
+          </div>
         
-        <label for="annee" class="my-3">Année de mise en circulation</label>
-        <input type="text" class="form-control" id="annee" name="annee" placeholder="Année" value="" />
+        <label for="date_fabrication" class="my-3">Année de mise en circulation</label>
+        <input type="text" class="form-control" id="date_fabrication" name="date_fabrication" placeholder="Année" value="" />
+
+        <label for="description" class="my-3">Description du véhicule et informations supplémentaires</label>
+        <input type="text" class="form-control" id="description" name="description" placeholder="Description" value="" />
 
         <label for="degats" class="my-3">Dégats éventuels</label>
         <input type="textarea" class="form-control" id="degats" name="degats" placeholder="Aucun" value="" />
+
+
+        <div class="form-group">
+          <label for="image">Upload d'une photo du véhicule (obligatoire)</label>
+          <input type="file" class="form-control-file" id="image" name="image">
+        </div>  
+
+        <button type="submit" class="btn btn-warning my-4" href="/achat/catalogue"> Ajouter ma voiture au catalogue</button>
+
     </form>
 </div>
 
