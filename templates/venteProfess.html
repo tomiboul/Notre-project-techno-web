@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1 style="margin-left: 20%; margin-top: 3%;">Donnez-nous déjà des informations sur votre véhicule</h1>
+<div class="form-group"></div>
+    <form action="/vente/professionnel" method="post" class="decalageplus border border-warning" style="padding: 1%;">
+        
+
+        <div class="row" style="margin-top: 1%;">
+            <div class="col">
+              Marque
+              <input type="text" class="form-control" name="brand" placeholder="Marque" id="brand">
+            </div>
+            <div class="col">
+              Modèle
+              <input type="text" class="form-control" name ="model" placeholder="Modèle" id="model" value="">
+            </div>
+        </div>
+
+        <label for="adress" class="my-3">Adresse de retrait</label>
+        <input type="text" class="form-control" id="adress" name="adress" placeholder="Adresse " value="" />
+
+        <label for="kilometrage" class="my-3">Kilométrage</label>
+        <input type="text" class="form-control" id="kilometrage" name="kilometrage" placeholder="Kilométrage " value="" />
+        
+        <label for="annee" class="my-3">Année de mise en circulation</label>
+        <input type="text" class="form-control" id="annee" name="annee" placeholder="Année" value="" />
+    </form>
+</div>
+{% endblock %}
