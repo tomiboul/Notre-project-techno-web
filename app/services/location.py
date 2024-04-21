@@ -3,7 +3,7 @@ from fastapi import HTTPException, status
 from app.database import Session
 from sqlalchemy import select
 from app.models.voiture import Car
-#from app.schemas.users import CarSchema
+
 
 
 
@@ -21,7 +21,8 @@ def get_all_car_for_location() -> list[CarSchema]:
                                         date_fabrication = car.date_fabrication,
                                         etat=car.etat,
                                         image = car.image,
-                                        proprietaire_id= car.proprietaire_id
+                                        proprietaire_id= car.proprietaire_id,
+                                        etat = car.etat
                                         ))    
         return car_location_list
 

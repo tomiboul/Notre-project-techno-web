@@ -7,9 +7,9 @@ from app.schemas.voiture import CarSchema
 
 
 
-def get_all_car_for_rent() -> list[CarSchema]:
+def get_all_car_for_sale() -> list[CarSchema]:
     with Session() as session :
-        statement = select(Car) #pas oublié le where
+        statement = select(Car).where(Car.etat.like('vente')) #pas oublié le where
         car_data = session.scalars(statement).unique().all()
 
         car_list = []
@@ -21,7 +21,8 @@ def get_all_car_for_rent() -> list[CarSchema]:
                                         date_fabrication = car.date_fabrication,
                                         etat=car.etat,
                                         image = car.image,
-                                        proprietaire_id= car.proprietaire_id
+                                        proprietaire_id= car.proprietaire_id,
+                                        etat=car.etat
                                         ))    
         return car_list
 

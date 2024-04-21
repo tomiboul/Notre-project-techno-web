@@ -8,7 +8,7 @@ from fastapi.responses import RedirectResponse
 from fastapi.templating import Jinja2Templates
 from pydantic import ValidationError
 from app.login_manager import login_manager
-
+from app.services.achat import get_all_car_for_sale
 
 router = APIRouter(prefix="/achat", tags=["Achat"])
 templates = Jinja2Templates(directory="./templates")
@@ -16,7 +16,6 @@ templates = Jinja2Templates(directory="./templates")
 
 @router.get('/catalogue',response_class=HTMLResponse)
 def catalogue(request:Request, user:UserSchema = Depends(login_manager.optional)):
-    db=SessionLocal()
-    vehicules=db.query(car).all()
-    db.close()
-    return templates.TemplateResponse('achat_list.html', context={'request':request,'current_user':user})
+    cars = get_all_car_for_sale()
+    return templates.TemplateResponse('catalogue.html', context={'request':request,'current_user':user,'cars':cars,'extra':'vente'})
+

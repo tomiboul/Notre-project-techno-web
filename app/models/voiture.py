@@ -11,6 +11,10 @@ class Car(Base):
     description = mapped_column(String(200)) 
     date_fabrication = mapped_column(String(10))
     etat = mapped_column(String(100))
-    image = mapped_column(String(100)) # a changer
+    image = mapped_column(String(100)) # a changer, à voir pour la création de lien exactement
     proprietaire_id : Mapped[str] = mapped_column(ForeignKey("users.id"))
     # proprio garage ou personne (en location proprio temporaire ou alors vente)
+    etat =mapped_column(String(10))
+    prix = mapped_column(String(10))
+    #etat = 'vente ou location 
+    

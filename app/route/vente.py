@@ -7,7 +7,7 @@ from fastapi.responses import RedirectResponse
 from fastapi.templating import Jinja2Templates
 from pydantic import ValidationError
 from app.login_manager import login_manager
-
+from app.schemas.voiture import CarSchema
 
 router = APIRouter(prefix="/vente", tags=["Vente"])
 templates = Jinja2Templates(directory="./templates")
@@ -24,6 +24,18 @@ def get_car_sale(request: Request,user:UserSchema=Depends(login_manager.optional
 def get_vente_partic(request:Request, user:UserSchema=Depends(login_manager.optional)) :
     return templates.TemplateResponse('ventePartic.html', context={'request':request, 'current_user':user})
 
+@router.post('/particulier')
+def vente_partic(request:Request, modele: Annotated[str,Form()], marque:Annotated[str,Form()],description:Annotated[str,Form()],date_fabrication:Annotated[str,Form()],image:Annotated[str,Form()],prix:Annotated[str,Form()], user:UserSchema=Depends(login_manager.optional)):
+    new_car_for_sale = CarSchema(id=str(uuid4()),
+                                 nomModel=modele,
+                                 marque=marque,
+                                 description=description,
+                                 date_fabrication=date_fabrication,
+                                 etat='vente',
+                                 image=image,
+                                 prix=prix,
+                                 proprietaire_id=user.id)
+
 @router.get('/professionnel')
 def get_vente_professionnel(request:Request,user:UserSchema=Depends(login_manager.optional)):
     return templates.TemplateResponse('venteProfess.html',context={'request':request,'current_user':user})
@@ -31,3 +43,4 @@ def get_vente_professionnel(request:Request,user:UserSchema=Depends(login_manage
 @router.post('/professionnel')
 def get_vente_professionnel(request:Request,user:UserSchema=Depends(login_manager.optional)):
     pass
+
