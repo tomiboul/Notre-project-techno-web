@@ -1,8 +1,41 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h1>Catalogue des véhicules en {{extra}}</h1>
+<h1 style="text-align: center;">Catalogue des véhicules en {{extra}}</h1>
+
 {% for car in cars%}
 <div class="row"></div>
 {%endfor%}
+
+<div class="container changes">
+    <table class ="table">
+        <thead style ="background-color: rgb(255, 193, 7);">
+            <tr>
+                <th scope="col">Identifiant du véhicule</th>
+                <th scope="col">Le modèle</th>
+                <th scope="col">La marque du véhicule</th>
+                <th scope="col">Etat du véhicule</th>
+                <th scope="col">Image du véhicule</th>
+                <th scope = "col">Prix</th>
+                <th scope = "col">Détail</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                {% for car in cars %} 
+                {{show_cars_for_location(cars.id,cars.nomModel,cars.marque,cars.description,cars.date_fabrication,cars.etat, cars.image, cars.prix)}}  
+            
+                <div class="row"></div>
+                <td>
+                    <a class="btn btn-outline-success mx-4 supp_livre" href="supp_livre/{{book.id}}"> Regarder le détail de ce véhicule </a>
+                </td>
+                
+                {% endfor %}
+            </tr>
+            <tr>
+                <th>Nombre de véhicule : {{ number_cars }} </th>
+            </tr>
+        </tbody>
+    </table> 
+</div>
 {% endblock %}

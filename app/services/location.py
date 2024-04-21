@@ -22,11 +22,12 @@ def get_all_car_for_location() -> list[CarSchema]:
                                         etat=car.etat,
                                         image = car.image,
                                         proprietaire_id= car.proprietaire_id,
-                                        etat = car.etat
+                                        prix = car.prix
+                                        #etat = car.etat
                                         ))    
         return car_location_list
 
-def get_car_for_location_by_id(car_id : CarSchema): # j'aimerais également faire un système de coontrole F pour trouvé une voiture via son id ou son nom
+def get_car_for_location_by_id(car_id : CarSchema): 
     with Session() as session :
         statement = select(Car).where(Car.id.like(car_id))
         carId = session.scalars(statement).unique().all()
@@ -39,7 +40,8 @@ def get_car_for_location_by_id(car_id : CarSchema): # j'aimerais également fair
                                 date_fabrication = carId.date_fabrication,
                                 etat=carId.etat,
                                 image = carId.image,
-                                proprietaire_id= carId.proprietaire_id
+                                proprietaire_id= carId.proprietaire_id,
+                                prix = carId.prix
                                 )
 
         return shearch_car
@@ -65,5 +67,7 @@ def update_car_for_location(updateCar : CarSchema):
                 old_car.image = updateCar.image
             if updateCar.proprietaire_id is not None and updateCar.proprietaire_id.strip:
                 old_car.proprietaire_id = updateCar.proprietaire_id
+            if updateCar.prix is not None and updateCar.prix.strip:
+                old_car.prix = updateCar.prix
                 
         session.commit()

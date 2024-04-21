@@ -17,5 +17,5 @@ templates = Jinja2Templates(directory="./templates")
 @router.get('/catalogue',response_class=HTMLResponse)
 def catalogue(request:Request, user:UserSchema = Depends(login_manager.optional)):
     cars = get_all_car_for_sale()
-    return templates.TemplateResponse('catalogue.html', context={'request':request,'current_user':user,'cars':cars,'extra':'vente'})
+    return templates.TemplateResponse('catalogue.html', context={'request':request,'current_user':user,'cars':cars,'extra':'vente', 'number_cars':len(cars)})
 

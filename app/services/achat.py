@@ -22,7 +22,7 @@ def get_all_car_for_sale() -> list[CarSchema]:
                                         etat=car.etat,
                                         image = car.image,
                                         proprietaire_id= car.proprietaire_id,
-                                        etat=car.etat
+                                        #etat=car.etat
                                         ))    
         return car_list
 
@@ -83,3 +83,16 @@ def raise_bad_request():
         status_code=status.HTTP_400_BAD_REQUEST,
         detail="Changement impossible et/ou condition non respectée.",
     )
+
+def save_car_for_sale(car:CarSchema):
+    with Session() as session :
+        new_car = Car(id=car.id, 
+                      marque=car.marque,
+                      nomModel=car.nomModel,
+                      description=car.description,
+                      date_fabrication=car.date_fabrication,
+                      etat = car.etat,
+                      image = car.image,
+                      proprietaire_id= car.proprietaire_id,
+                      prix=car.prix
+        )

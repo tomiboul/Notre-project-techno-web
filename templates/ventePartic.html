@@ -3,17 +3,31 @@
 {% block content %}
 
 <div class="form-group"></div>
-    <form action="/vente/particulier" method="post" class="decalageplus">
-        <div class="row" style="margin-top: 1%;">
-            <div class="col">
-              Marque
-              <input type="text" class="form-control" name="brand" placeholder="Marque" id="brand">
-            </div>
-            <div class="col">
+    <form style ="padding :20px; border: 2px solid rgb(255, 193, 7)" action="/vente/particulier" method="post" class="decalageplus">
+        
+            <div class="form-group">
+                <label for="marque">Marque du véhicule</label>
+                <select style = "margin-top : 10px ;" class="form-control" id="marque" name="marque">
+                  <optgroup label="Choississez une marque"></optgroup>
+                  <option>Aucune de ces marques</option>
+                  <optgroup label="Marques disponibles"></optgroup>
+                  <option>Alfa Romeo</option> <option>Audi</option> <option>BMW</option>
+                  <option>Bugatti</option><option>Citroën</option> <option>Dacia</option>
+                  <option>Ferrari</option><option>Fiat</option><option>Ford</option>
+                  <option>Harley Davidson</option> <option>Honda</option> <option>Hyundai</option>
+                  <option>Jaguar</option> <option>Lamborghini</option><option>Lexus</option>
+                  <option>McLaren</option> <option>Mercedes-Benz</option> <option>Nissan</option>
+                  <option>Opel</option> <option>Peugeot</option> <option>Porsche</option>
+                  <option>Suzuki</option> <option>Tesla</option> <option>Maserati</option>
+                  <option>Toyota</option> <option>Volkswagen (DAS AUTO)</option> <option>Volvo</option>                  
+                </select>
+            
+            <div style = "margin-top : 13px ;" >
               Modèle
-              <input type="text" class="form-control" name ="model" placeholder="Modèle" id="model" value="">
+              
+              <input style = "margin-top : 13px ;" type="text" class="form-control" name ="model" placeholder="Modèle" id="model" value="">
             </div>
-        </div>
+        
 
         <label for="adress" class="my-3">Adresse de retrait</label>
         <input type="text" class="form-control" id="adress" name="adress" placeholder="Adresse " value="" />
@@ -28,4 +42,5 @@
         <input type="textarea" class="form-control" id="degats" name="degats" placeholder="Aucun" value="" />
     </form>
 </div>
+
 {% endblock %}

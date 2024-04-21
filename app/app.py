@@ -28,7 +28,7 @@ templates = Jinja2Templates(directory="././templates")
 @app.on_event('startup') 
 def on_startup():
     print("Server started.")
-    
+    #delete_database()
     create_database()
 
 

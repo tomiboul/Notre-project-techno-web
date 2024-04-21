@@ -35,6 +35,8 @@ def vente_partic(request:Request, modele: Annotated[str,Form()], marque:Annotate
                                  image=image,
                                  prix=prix,
                                  proprietaire_id=user.id)
+    save_car_for_sale(new_car_for_sale)
+    return RedirectResponse('/achat/catalogue')
 
 @router.get('/professionnel')
 def get_vente_professionnel(request:Request,user:UserSchema=Depends(login_manager.optional)):
