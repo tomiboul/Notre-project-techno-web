@@ -30,7 +30,7 @@ def get_vente_partic(request:Request, user:UserSchema=Depends(login_manager.opti
 def vente_partic(request:Request, modele: Annotated[str,Form()], marque:Annotated[str,Form()],description:Annotated[str,Form()],date_fabrication:Annotated[str,Form()],vehType:Annotated[str,Form()],image:UploadFile,prix:Annotated[str,Form()], user:UserSchema=Depends(login_manager.optional)):
     
     filename = str(uuid4())
-    with open("images/%s" % filename, "wb") as stockage:
+    with open("images/%s.png" % filename, "wb") as stockage:
         shutil.copyfileobj(image.file, stockage)
     
     new_car_for_sale = CarSchema(id=str(uuid4()),
@@ -39,7 +39,7 @@ def vente_partic(request:Request, modele: Annotated[str,Form()], marque:Annotate
                                  description=description,
                                  date_fabrication=date_fabrication,
                                  etat='vente',
-                                 image="images/%s" % filename,
+                                 image="%s.png" % filename,
                                  prix=prix,
                                  proprietaire_id=user.id,
                                  vehType=vehType

@@ -1,5 +1,6 @@
 {% extends "base.html" %}
-
+{% from "myMacro.html" import show_cars %}
+{% from "myMacro.html" import create_modal %}
 {% block content %}
 <h1 style="text-align: center;">Catalogue des véhicules en {{extra}}</h1>
 
@@ -14,7 +15,6 @@
                 <th scope="col">Identifiant du véhicule</th>
                 <th scope="col">Le modèle</th>
                 <th scope="col">La marque du véhicule</th>
-                <th scope="col">Etat du véhicule</th>
                 <th scope="col">Image du véhicule</th>
                 <th scope = "col">Prix</th>
                 <th scope = "col">Détail</th>
@@ -23,15 +23,20 @@
         <tbody>
             <tr>
                 {% for car in cars %} 
-
+                <tr>
                 {%if car.etat == extra %}
                 {{show_cars(car.id,car.nomModel,car.marque,car.description,car.date_fabrication,car.etat, car.image, car.prix)}}  
                 
-                <div class="row"></div>
+                
                 <td>
-                    <a class="btn btn-outline-success mx-4 supp_livre" href="#"> Regarder le détail de ce véhicule </a>
+                    <a class="btn btn-outline-warning mx-4" href="#">V</a>
                 </td>
+
+                <a>{{create_modal(car.id,car.nomModel,car.marque,car.description,car.date_fabrication,car.etat, car.image, car.prix)}}</a>
+                
+               
                 {%endif%}
+            </tr>
                 {% endfor %}
             </tr>
             <tr>
