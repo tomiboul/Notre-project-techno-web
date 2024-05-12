@@ -30,22 +30,20 @@ def get_all_car_for_sale() -> list[CarSchema]:
 def get_id_car(car_id : str) :
     with Session() as session :
         statement = select(Car).where(Car.id.like(car_id))
-        idCar = session.scalars(statement).unique().all()
-
-        car_list_id = []
-        for car in idCar :
-            car_list_id.append(CarSchema(id=car.id, 
-                                        nomModel=car.nomModel, 
-                                        marque=car.marque,
-                                        description=car.description,
-                                        date_fabrication = car.date_fabrication,
-                                        etat=car.etat,
-                                        image = car.image,
-                                        proprietaire_id= car.proprietaire_id,
-                                        vehType=car.vehType,
-                                        prix=car.prix
-                                        ))    
-        return car_list_id
+        idCar = session.scalar(statement)
+ 
+        car= CarSchema(id=idCar.id, 
+                     nomModel=idCar.nomModel, 
+                    marque=idCar.marque,
+                    description=idCar.description,
+                    date_fabrication = idCar.date_fabrication,
+                    etat=idCar.etat,
+                    image = idCar.image,
+                    proprietaire_id= idCar.proprietaire_id,
+                    vehType=idCar.vehType,
+                    prix=idCar.prix
+                    )   
+        return car
 
 
 def update_car(updateCar : CarSchema):

@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+
+<img src = "/images/{{car.image}}" style="width:600px; margin-top: 5%; margin-left: 7%; padding:1%;" class="border border-warning border-5">
+
+<div class ="container border border-warning border-5" style="margin-top: -15%; margin-left:50%">
+    
+    <div class = "row">
+        <div class = "col-2" style="background-color: gray;">Numéro identifiant</div>
+        <div class = "col-8">{{car.id}}</div>
+    </div>
+    <div class = "row">
+        <div class = "col-2" style="background-color: gray;">Marque</div>
+        <div class = "col-8">{{car.marque}}</div>
+    </div>
+    <div class = "row">
+        <div class = "col-2" style="background-color: gray;">Modèle</div>
+        <div class = "col-8">{{car.nomModel}}</div>
+    </div>
+    <div class = "row">
+        <div class = "col-2" style="background-color: gray;">Date de fabrication</div>
+        <div class = "col-8">{{car.date_fabrication}}</div>
+    </div>
+    <div class = "row">
+        <div class = "col-2" style="background-color: gray;">Description</div>
+        <div class = "col-8">{{car.description}}</div>
+    </div>
+    <div class = "row">
+        <div class = "col-2" style="background-color: gray;">Type du véhicule</div>
+        <div class = "col-8">{{car.vehType}}</div>
+    </div>
+    {%if car.etat == 'location' %}
+    <div class = "row">
+        <div class = "col-2" style="background-color: gray;">Prix de location</div>
+        <div class = "col-8">{{car.prix}}</div>
+    </div>
+    {%else%}
+    <div class = "row">
+        <div class = "col-2" style="background-color: gray;">Prix de vente</div>
+        <div class = "col-8">{{car.prix}}</div>
+    </div>
+    {%endif%}
+
+</div>
+
+<a class = "btn btn-warning mx-4" href="/achat/catalogue" style="margin-top: 10%;">Retour au catalogue</a>
+
+{% endblock %}

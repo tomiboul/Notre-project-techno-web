@@ -1,6 +1,5 @@
 {% extends "base.html" %}
 {% from "myMacro.html" import show_cars %}
-{% from "myMacro.html" import create_modal %}
 {% block content %}
 <h1 style="text-align: center;">Catalogue des véhicules en {{extra}}</h1>
 
@@ -28,11 +27,9 @@
                 {{show_cars(car.id,car.nomModel,car.marque,car.description,car.date_fabrication,car.etat, car.image, car.prix)}}  
                 
                 
-                <td>
-                    <a class="btn btn-outline-warning mx-4" href="#">V</a>
-                </td>
+                
 
-                <a>{{create_modal(car.id,car.nomModel,car.marque,car.description,car.date_fabrication,car.etat, car.image, car.prix)}}</a>
+                
                 
                
                 {%endif%}
