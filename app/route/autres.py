@@ -8,7 +8,7 @@ from fastapi.templating import Jinja2Templates
 from app.schemas.users import UserSchema
 from pydantic import ValidationError
 from app.login_manager import login_manager
-from app.services.achat import get_id_car
+from app.services.achat import get_id_car, car_sold
 
 
 router = APIRouter(prefix="/autres", tags=["Autres"])
@@ -27,4 +27,5 @@ def paiement(request : Request, id:str,user:UserSchema = Depends(login_manager.o
 @router.post('/paiement/{id}')
 def paiement(request : Request, id:str, adresse:Annotated[str,Form()], titulaire:Annotated[str, Form()], numero:Annotated[str, Form()], pays:Annotated[str, Form()], date:Annotated[str, Form()], user:UserSchema = Depends(login_manager.optional)):
     #rien n'est pour l'instant fait avec les coordonnées bancaires et le paiement
+    car_sold(id)
     return RedirectResponse('/achat/catalogue', status_code=302)

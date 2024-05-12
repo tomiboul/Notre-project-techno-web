@@ -101,3 +101,12 @@ def save_car_for_sale(car:CarSchema):
         )
         session.add(new_car)
         session.commit()
+
+
+def car_sold(id:str):
+    with Session() as session :
+        statement = select(Car).where(Car.id.like(id))
+        car = session.scalar(statement)
+
+        car.etat = 'vendu'
+        session.commit()

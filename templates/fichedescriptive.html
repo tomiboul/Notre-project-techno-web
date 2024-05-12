@@ -31,10 +31,13 @@
             <div class = "col-2" style="background-color: rgb(50, 50, 50);color : white;padding-top: 1%;">Description</div>
             <div class = "col-4" style="padding-top: 1%;background-color: white;">{{car.description}}</div>
         </div>
+
         <div class = "row">
             <div class = "col-2" style="background-color: rgb(50, 50, 50);color : white;padding-top: 1%;">Type du véhicule</div>
             <div class = "col-4" style="padding-top: 1%;background-color: white;">{{car.vehType}}</div>
         </div>
+
+       
         {%if car.etat == 'location' %}
         <div class = "row">
             <div class = "col-2" style="background-color: rgb(50, 50, 50); color : white; padding-top: 1%; padding-bottom: 1%;">Prix de location</div>
