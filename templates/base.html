@@ -26,12 +26,13 @@
         <a class="nav-item nav-link" href="/achat/catalogue"> Achat Particulier/Professionnel <span class="sr-only">(current)</span></a>
         <a class="nav-item nav-link" href="/location/catalogue"> Location </a>
         <a class="nav-item nav-link" href="/vente/client"> Vendre ma voiture </a>
-        <a class="nav-item nav-link" href="#"> Entretien de ma voiture </a>
-        <a class="nav-item nav-link" href="#"> Nous contacter </a>
+        <a class="nav-item nav-link" href="/autres/entretien"> Entretien de ma voiture </a>
+        <a class="nav-item nav-link" href="/autres/contact"> Nous contacter </a>
         <a class="nav-item nav-link" href="#"> Laissez nous votre avis </a>
         
         {%if current_user is none %}
-        <a class="nav-item nav-link" href="/users/login"> Se connecter </a>       
+        <a class="nav-item nav-link" href="/users/login"> Se connecter </a> 
+        <div class="nav-item nav-link" style="color: rgb(255, 193, 7); font-size: 9px;">Connectez-vous pour accéder à toutes les fonctionnalités de notre site</div>      
         {%else%}
         <a class="nav-item nav-link" href="/users/me"> Voir mon profil </a>    
         <a class="nav-item nav-link" href="/users/logout" style="text-align: right;"> Se déconnecter </a>  

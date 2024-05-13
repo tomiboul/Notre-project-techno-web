@@ -29,3 +29,17 @@ def paiement(request : Request, id:str, adresse:Annotated[str,Form()], titulaire
     #rien n'est pour l'instant fait avec les coordonnées bancaires et le paiement
     car_sold(id)
     return RedirectResponse('/achat/catalogue', status_code=302)
+
+@router.get('/contact', response_class=HTMLResponse)
+def contact(request:Request, user:UserSchema=Depends(login_manager.optional)):
+    return templates.TemplateResponse('contact.html', context={"request":request,"current_user":user})
+
+@router.get('/entretien', response_class=HTMLResponse)
+def entretien(request: Request, user:UserSchema=Depends(login_manager.optional)):
+    return templates.TemplateResponse('entretien.html', context={"request":request, "current_user":user})
+
+@router.post('/entretien')
+def entretien_rendezvous(request:Request, date:Annotated[str, Form()], email:Annotated[str,Form()], heure:Annotated[str,Form()],user:UserSchema=Depends(login_manager.optional)) :
+    
+    return RedirectResponse('/autres/home', status_code=302)
+    

@@ -57,7 +57,9 @@
 
 <a class = "btn btn-warning mx-4" href="/achat/catalogue" style="margin-top: 1%;">Retour au catalogue</a>
 
+{%if(current_user is not none)%}
 <a class = "btn btn-warning mx-4" href="/autres/paiement/{{car.id}}" style="margin-top: 1%;">Acheter</a>
+{%endif%}
 {% endblock %}
 
 {%block suite %}

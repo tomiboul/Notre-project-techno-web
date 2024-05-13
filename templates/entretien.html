@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="form-group"></div>
+    <form style ="padding :20px; border: 2px solid rgb(255, 193, 7)" action="/autres/entretien" method="post" class="decalageplus"  enctype="multipart/form-data">
+        
+        <div style = "margin-top : 13px ;">
+              Date désirée
+              <input style = "margin-top : 13px ;" type="date" class="form-control" name ="date" placeholder="date" id="date" value="">
+        </div>
+        
+        <div style = "margin-top : 13px ;">
+            Heure désirée
+            <input style = "margin-top : 13px ;" type="text" class="form-control" name ="heure" placeholder="heure" id="heure" value="">
+        </div>
+        <label for="email" class="my-3">Mon adresse email</label>
+        <input type="text" class="form-control" id="email" name="email" placeholder="Adresse " value="" />
+
+
+        <button type="submit" class="btn btn-warning my-4" href="/autres/entretien"> Demander un rendez-vous</button>
+
+    </form>
+</div>
+
+
+{% endblock%}

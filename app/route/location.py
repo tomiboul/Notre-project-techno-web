@@ -33,3 +33,5 @@ def catalogue_location(request: Request,  user: UserSchema = Depends(login_manag
 
 
 
+
+
