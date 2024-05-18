@@ -17,8 +17,8 @@ templates = Jinja2Templates(directory="./templates")
 
 @router.get('/questions',response_class=HTMLResponse )
 def questionnement(request: Request,  user: UserSchema = Depends(login_manager.optional)):
-       if user is not None :
-          if user.blocked == True:
+       
+        if user.blocked == True:
             return templates.TemplateResponse(
             "blockedRedirect.html",
             context={'request': request, 'current_user' : user})

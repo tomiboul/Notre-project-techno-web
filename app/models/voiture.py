@@ -16,5 +16,5 @@ class Car(Base):
     proprietaire_id : Mapped[str] = mapped_column(ForeignKey("users.id"))
     # proprio garage ou personne (en location proprio temporaire ou alors vente)
     prix = mapped_column(String(10)) 
-    #etat = 'vente ou location 
+    #etat = 'vente' ou 'location' ou 'vendu'
     

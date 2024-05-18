@@ -1,0 +1,23 @@
+{%extends 'base.html' %}
+
+
+
+{%block content%}
+{%if current_user is not none%}
+
+<a class="btn btn-warning" href="/autres/ecrireavis">Donner mon avis</a>
+{%endif%}
+{%for a in avis%}
+
+<div class = "row"></div>
+{%for e in align%}
+<div class = "col">
+
+
+</div>
+{%endfor%}
+
+{%endfor%}
+
+
+{%endblock%}

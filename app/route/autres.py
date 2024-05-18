@@ -9,6 +9,8 @@ from app.schemas.users import UserSchema
 from pydantic import ValidationError
 from app.login_manager import login_manager
 from app.services.achat import get_id_car, car_sold
+from app.services.autres import get_all_avis, save_avis
+from app.schemas.avis import avisSchema
 
 
 router = APIRouter(prefix="/autres", tags=["Autres"])
@@ -43,3 +45,20 @@ def entretien_rendezvous(request:Request, date:Annotated[str, Form()], email:Ann
     
     return RedirectResponse('/autres/home', status_code=302)
     
+@router.get('/avis')
+def getAvisListe(request: Request, user:UserSchema=Depends(login_manager.optional)):
+    avis = get_all_avis()
+    align = [0,0,0,0]
+    return templates.TemplateResponse('avis.html', context={"request":request,"current_user":user, "avis":avis, "align":align})
+
+@router.get('/ecrireavis')
+def avis(request: Request, user:UserSchema=Depends(login_manager.optional)):
+    avis = get_all_avis()
+    align = [0,0,0,0]
+    return templates.TemplateResponse('ecrireavis.html', context={"request":request,"current_user":user, "avis":avis, "align":align})
+
+@router.post('/ecrireavis')
+def avis(request: Request, rating:Annotated[str,Form()], avis:Annotated[str,Form()], user:UserSchema=Depends(login_manager.optional)):
+    new_avis = avisSchema(avisId=str(uuid4()), idUser= user.id, rating= rating, avis = avis)
+    save_avis(new_avis)
+    return RedirectResponse('/avis',status_code=302)
