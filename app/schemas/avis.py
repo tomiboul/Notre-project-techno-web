@@ -5,3 +5,4 @@ class avisSchema(BaseModel) :
     idUser :  str
     avis : str=Field(min_length=0, max_length=300)
     rating : str=Field(min_length=5, max_length=20)
+    idCible : str

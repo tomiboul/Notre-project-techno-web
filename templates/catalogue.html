@@ -3,12 +3,19 @@
 {% block content %}
 <h1 style="text-align: center;">Catalogue des véhicules en {{extra}}</h1>
 
+<form style="position:absolute; top: 90px; right: 20px;" class="form-inline my-2 my-lg-0">
+    <input class="form-control mr-sm-2" type="Rechercher" placeholder="Rechercher" aria-label="Rechercher">
+    <button class="btn btn-outline-warning my-2 my-sm-0" type="submit" style="margin-bottom: 5px;">Rechercher</button>
+</form>
+
+
 {% for car in cars%}
 <div class="row"></div>
 {%endfor%}
 
-<div class="container changes">
-    <table class ="table">
+
+<div class="container changes" style="margin-top: 12px;">
+    <table class ="table" >
         <thead style ="background-color: rgb(255, 193, 7);">
             <tr>
                 <th scope="col">Identifiant du véhicule</th>
@@ -24,22 +31,4 @@
                 {% for car in cars %} 
                 <tr>
                 {%if car.etat == extra %}
-                {{show_cars(car.id,car.nomModel,car.marque,car.description,car.date_fabrication,car.etat, car.image, car.prix)}}  
-                
-                
-                
-
-                
-                
-               
-                {%endif%}
-            </tr>
-                {% endfor %}
-            </tr>
-            <tr>
-                <th>Nombre de véhicule : {{ number_cars }} </th>
-            </tr>
-        </tbody>
-    </table> 
-</div>
-{% endblock %}
+                {{show_cars(car.id,car.nomModel,car.marque,car.description,car.date_fabrication,car.etat, car.image, car.

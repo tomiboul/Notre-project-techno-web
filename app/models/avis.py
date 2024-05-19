@@ -9,6 +9,7 @@ class Avis(Base):
     avisId = mapped_column(String(37), primary_key=True)
     avis = mapped_column(String(300))
     rating = mapped_column(String(20))
+    idCible = mapped_column(String(37))
     idUser :Mapped[str]=  mapped_column(ForeignKey("users.id"))
-
+    
     

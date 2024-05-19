@@ -15,13 +15,13 @@ def get_all_avis():
         avisListe = []
 
         for a in avis :
-            avisListe.append(avisSchema(avisId= a.avisId, avis=a.avis, rating= a.rating, idUser=a.idUser))
+            avisListe.append(avisSchema(avisId= a.avisId, avis=a.avis, rating= a.rating, idUser=a.idUser, idCible=a.idCible))
 
         return avisListe
     
 def save_avis(a:avisSchema):
     with Session() as session:
-        new_avis = Avis(avisId=a.avisId, rating=a.rating, idUser=a.idUser, avis=a.avis)
+        new_avis = Avis(avisId=a.avisId, rating=a.rating, idUser=a.idUser, avis=a.avis, idCible=a.idCible)
 
         session.add(new_avis)
         session.commit()

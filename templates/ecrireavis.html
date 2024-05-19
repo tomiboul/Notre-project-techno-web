@@ -1,26 +1,14 @@
 {%extends 'base.html'%}
 
 {%block content%}
-<form action="/autres/ecrireavis" method="post" style="margin-left: 30%; margin-right: 30%; padding-top: 2%;">
-    
-    <div class="form-group">
-        <label for="email">Adresse Email </label>
-        <input type="text" class="form-control" id="email"
-               name="email" placeholder="" />
-    </div>
-    
-    <div class="form-group">
-        <label for="password">Mot de passe</label>
-        <input type="password" class="form-control" id="password"
-               name="password" />
-    </div>
-
-    <div>
-    <button type="submit" class="btn btn-warning my-4" href="/autres/avis"> Enregistrer mon avis </button>
-    </div> 
-    <div><a class="btn btn-warning mx-4" href="/autres/avis"> Annuler </a></div>
-  
-    
-      
-</form>
-{%endblock%}
+<div class="form-group"></div>
+    <form style ="padding :20px; border: 2px solid rgb(255, 193, 7)" action="/autres/ecrireavis" method="post" class="decalageplus"  enctype="multipart/form-data"> 
+        <div style = "margin-top : 13px ;">
+            <label for="rating" class="my-3">Note</label>
+                    <select style = "margin-top : 10px ;" class="form-control" id="rating" name="rating">
+                    <optgroup label="Choisissez votre note"></optgroup>
+                    <option>Aucune note sélectionnée</option>
+                    <optgroup label="Note"></optgroup>
+                    <option>☆☆☆☆☆</option>
+                    <option>★☆☆☆☆</option>
+                    <option>★★☆☆☆</option>

@@ -47,18 +47,33 @@ def entretien_rendezvous(request:Request, date:Annotated[str, Form()], email:Ann
     
 @router.get('/avis')
 def getAvisListe(request: Request, user:UserSchema=Depends(login_manager.optional)):
-    avis = get_all_avis()
-    align = [0,0,0,0]
-    return templates.TemplateResponse('avis.html', context={"request":request,"current_user":user, "avis":avis, "align":align})
+    if user is not None:
+        avis = get_all_avis()
+        align = [0,0,0,0]
+        return templates.TemplateResponse('avis.html', context={"request":request,"current_user":user, "avis":avis, "align":align})
+    else :
+        return templates.TemplateResponse("exceptions.html", context={'request':request, 'status_code':400,'message':'Vous ne pouvez pas écrire un avis si vous n\'êtes pas connecté','current_user':user})
 
 @router.get('/ecrireavis')
 def avis(request: Request, user:UserSchema=Depends(login_manager.optional)):
-    avis = get_all_avis()
-    align = [0,0,0,0]
-    return templates.TemplateResponse('ecrireavis.html', context={"request":request,"current_user":user, "avis":avis, "align":align})
-
+        avis = get_all_avis()
+        align = [0,0,0,0]
+        return templates.TemplateResponse('ecrireavis.html', context={"request":request,"current_user":user, "avis":avis, "align":align})
+    
 @router.post('/ecrireavis')
-def avis(request: Request, rating:Annotated[str,Form()], avis:Annotated[str,Form()], user:UserSchema=Depends(login_manager.optional)):
-    new_avis = avisSchema(avisId=str(uuid4()), idUser= user.id, rating= rating, avis = avis)
+def avis(request: Request, rating:Annotated[str,Form()], commentaire:Annotated[str,Form()], user:UserSchema=Depends(login_manager.optional)):
+    #1 = id cible du site -> avis sur le site
+    new_avis = avisSchema(avisId=str(uuid4()), idUser= user.id, rating= rating, avis = commentaire, idCible='111111111')
     save_avis(new_avis)
     return RedirectResponse('/avis',status_code=302)
+
+@router.get('/avisvoiture/{car_id}')
+def avisvoiture(request:Request, car_id:str,user:UserSchema=Depends(login_manager.optional)):
+    car = get_id_car(car_id)
+    return templates.TemplateResponse('avisvoiture.html',context={"request":request,"car":car, "current_user":user})
+
+@router.post('/avisvoiture/{car_id}')
+def avisvoiture(request:Request, car_id:str,commentaire:Annotated[str,Form()],rating:Annotated[str,Form()],user:UserSchema=Depends(login_manager.optional)):
+    
+
+    return RedirectResponse('/fichedescriptive/{car_id}', status_code=302)

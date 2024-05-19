@@ -1,16 +1,10 @@
-{% extends "base.html" %}
+{% extends "fichedescriptive.html" %}
 
 {% block content %}
 
-
-
-
 <div class = "container" style="background-color: rgb(50, 50, 50); margin-left: 9%; margin-top: 5%; margin-right: 20%;">
-    
-   
     <div class ="container border border-warning border-1 rounded-3" style="padding:2%;  margin-left:47%;margin-right: 20%;">
         <div class = "row"><div class = "col" style="margin-left:23%; color:white; padding-bottom: 1%;">Informations du véhicule</div></div>
-
         <div class = "row">
             <div class = "col-2" style="background-color: rgb(50, 50, 50);color : white; padding-top: 1%;">Numéro identifiant</div>
             <div class = "col-4" style="padding-top: 1%;background-color: white;">{{car.id}}</div>
@@ -31,13 +25,10 @@
             <div class = "col-2" style="background-color: rgb(50, 50, 50);color : white;padding-top: 1%;">Description</div>
             <div class = "col-4" style="padding-top: 1%;background-color: white;">{{car.description}}</div>
         </div>
-
         <div class = "row">
             <div class = "col-2" style="background-color: rgb(50, 50, 50);color : white;padding-top: 1%;">Type du véhicule</div>
             <div class = "col-4" style="padding-top: 1%;background-color: white;">{{car.vehType}}</div>
         </div>
-
-       
         {%if car.etat == 'location' %}
         <div class = "row">
             <div class = "col-2" style="background-color: rgb(50, 50, 50); color : white; padding-top: 1%; padding-bottom: 1%;">Prix de location</div>
@@ -49,14 +40,7 @@
             <div class = "col-4" style = "padding-top: 1%; padding-bottom: 1%;background-color: white;">{{car.prix}}</div>
         </div>
         {%endif%}
-
     </div>
-
 </div>
 <img src = "/images/{{car.image}}" style="width:600px; margin-top: -25%; margin-left: 5%;background-color: rgb(50, 50, 50); padding:1%;" class="border border-warning border-5 rounded-3">
-
 <a class = "btn btn-warning mx-4" href="/achat/catalogue" style="margin-top: 1%;">Retour au catalogue</a>
-
-{%if(current_user is not none)%}
-<a class = "btn btn-warning mx-4" href="/autres/paiement/{{car.id}}" style="margin-top: 1%;">Acheter</a>
-<a class = "btn btn-warning mx-4" href="/autres/avisvoi
