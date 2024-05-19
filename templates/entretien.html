@@ -10,8 +10,49 @@
         </div>
         
         <div style = "margin-top : 13px ;">
-            Heure désirée
-            <input style = "margin-top : 13px ;" type="text" class="form-control" name ="heure" placeholder="heure" id="heure" value="">
+            <div class="row">
+                <div class="col">
+                <label for="vehType" class="my-3">RDV dans la matinée</label>
+                    <select style = "margin-top : 10px ;" class="form-control" id="vehType" name="vehType">
+                    <optgroup label="Choisissez votre créneau horaire"></optgroup>
+                    <option>Aucun créneau sélectionné</option>
+                    <optgroup label="Créneau disponibles"></optgroup>
+                    <option>9:00</option>
+                    <option>9:20</option>
+                    <option>9:40</option>
+                    <option>10:00</option>
+                    <option>10:20</option>
+                    <option>10:40</option>
+                    <option>11:00</option>
+                    <option>11:20</option>
+                    <option>11:40</option>
+                    </select>
+                </div> 
+                <div class="col1">
+                <label for="vehType" class="my-3">RDV dans l'après-midi</label>
+                    <select style = "margin-top : 10px ;" class="form-control" id="vehType" name="vehType">
+                    <optgroup label="Choisissez votre créneau horaire"></optgroup>
+                    <option>Aucun créneau sélectionné</option>
+                    <optgroup label="Créneau disponibles"></optgroup>
+                    <option>13:00</option>
+                    <option>13:20</option>
+                    <option>13:40</option>
+                    <option>14:00</option>
+                    <option>14:20</option>
+                    <option>14:40</option>
+                    <option>15:00</option>
+                    <option>15:20</option>
+                    <option>15:40</option>
+                    <option>16:00</option>
+                    <option>16:20</option>
+                    <option>16:40</option>
+                    <option>17:00</option>
+                    <option>17:20</option>
+                    <option>17:40</option>
+                    </select> 
+                    </div>
+                 </div>
+            </div>
         </div>
         <label for="email" class="my-3">Mon adresse email</label>
         <input type="text" class="form-control" id="email" name="email" placeholder="Adresse " value="" />
