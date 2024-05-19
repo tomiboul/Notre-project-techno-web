@@ -59,4 +59,9 @@
 
 {%if(current_user is not none)%}
 <a class = "btn btn-warning mx-4" href="/autres/paiement/{{car.id}}" style="margin-top: 1%;">Acheter</a>
-<a class = "btn btn-warning mx-4" href="/autres/avisvoi
+<a class = "btn btn-warning mx-4" href="/autres/avisvoiture/{{car.id}}" style="margin-top: 1%;">Donnez son avis</a>
+{%endif%}
+{% endblock %}
+
+{%block suite %}
+{%endblock%}

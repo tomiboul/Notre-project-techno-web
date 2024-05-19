@@ -31,4 +31,17 @@
                 {% for car in cars %} 
                 <tr>
                 {%if car.etat == extra %}
-                {{show_cars(car.id,car.nomModel,car.marque,car.description,car.date_fabrication,car.etat, car.image, car.
+                {{show_cars(car.id,car.nomModel,car.marque,car.description,car.date_fabrication,car.etat, car.image, car.prix)}}  
+                {%endif%}
+            </tr>
+                {% endfor %}
+            </tr>
+            <tr>
+                <th>Nombre de véhicule : {{ number_cars }} </th>
+            </tr>
+        </tbody>
+    </table> 
+</div>
+
+
+{% endblock %}
