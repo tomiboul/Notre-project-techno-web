@@ -3,9 +3,9 @@
 {% block content %}
 <h1 style="text-align: center;">Catalogue des véhicules en {{extra}}</h1>
 
-<form style="position:absolute; top: 90px; right: 20px;" class="form-inline my-2 my-lg-0">
-    <input class="form-control mr-sm-2" type="Rechercher" placeholder="Rechercher" aria-label="Rechercher">
-    <button class="btn btn-outline-warning my-2 my-sm-0" type="submit" style="margin-bottom: 5px;">Rechercher</button>
+<form style="position:absolute; top: 90px; right: 20px;" class="form-inline my-2 my-lg-0" action="/achat/catalogue/search" method="post">
+    <input class="form-control mr-sm-2" type="Rechercher" placeholder="Soyez précis :" aria-label="Rechercher" name="keyword" id="keyword">
+    <button class="btn btn-outline-warning my-2 my-sm-0" type="submit" style="margin-bottom: 5px;" href="/achat/catalogue">Rechercher</button>
 </form>
 
 
@@ -37,7 +37,7 @@
                 {% endfor %}
             </tr>
             <tr>
-                <th>Nombre de véhicule : {{ number_cars }} </th>
+                <th>Nombre de véhicule mis en vente disponible : {{ number_cars }} </th>
             </tr>
         </tbody>
     </table> 

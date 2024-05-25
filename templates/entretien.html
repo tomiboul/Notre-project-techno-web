@@ -12,8 +12,8 @@
         <div style = "margin-top : 13px ;">
             <div class="row">
                 <div class="col">
-                <label for="vehType" class="my-3">RDV dans la matinée</label>
-                    <select style = "margin-top : 10px ;" class="form-control" id="vehType" name="vehType">
+                <label for="heure" class="my-3">RDV dans la matinée</label>
+                    <select style = "margin-top : 10px ;" class="form-control" id="heure" name="heure">
                     <optgroup label="Choisissez votre créneau horaire"></optgroup>
                     <option>Aucun créneau sélectionné</option>
                     <optgroup label="Créneau disponibles"></optgroup>
@@ -30,8 +30,8 @@
                 </div> 
 
                 <div class="col1">
-                <label for="vehType" class="my-3">RDV dans l'après-midi</label>
-                    <select style = "margin-top : 10px ;" class="form-control" id="vehType" name="vehType">
+                <label for="heure" class="my-3">RDV dans l'après-midi</label>
+                    <select style = "margin-top : 10px ;" class="form-control" id="heure" name="heure">
                     <optgroup label="Choisissez votre créneau horaire"></optgroup>
                     <option>Aucun créneau sélectionné</option>
                     <optgroup label="Créneau disponibles"></optgroup>
@@ -56,9 +56,9 @@
             </div>
         </div>
         <label for="email" class="my-3">Mon adresse email</label>
-        <input type="text" class="form-control" id="email" name="email" placeholder="Adresse " value="" />
+        <input type="text" class="form-control" id="email" name="email" placeholder="Adresse " value="email"/>
 
-        <button type="submit" class="btn btn-warning my-4" href="/autres/entretien"> Demander un rendez-vous</button>
+        <a class="btn btn-warning my-4" href="/autres/entretienConfirme"> Demander un rendez-vous</a>
 
     </form>
 </div>

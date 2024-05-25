@@ -9,7 +9,7 @@ from app.models.voiture import Car
 
 def get_all_car_for_location() -> list[CarSchema]:
     with Session() as session :
-        statement = select(Car)
+        statement = select(Car).where(Car.etat.like('location'))
         car_data = session.scalars(statement).unique().all()
 
         car_location_list = []

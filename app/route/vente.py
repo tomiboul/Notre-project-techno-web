@@ -20,7 +20,11 @@ def get_car_sale(request: Request,user:UserSchema=Depends(login_manager.optional
         return templates.TemplateResponse("vente.html",context={"request":request,'current_user':user})
     else :
         return templates.TemplateResponse("exceptions.html", context={'request':request, 'status_code':400,'message':'Le service de vente n\'est pas disponible pour les utilisateurs non connectés','current_user':user})
-    
+
+@router.get('/venteConfirme', response_class=HTMLResponse)
+def entretien(request: Request, user:UserSchema=Depends(login_manager.optional)):
+    return templates.TemplateResponse('venteConfirme.html', context={"request":request, "current_user":user})
+
     
 @router.get('/particulier',response_class=HTMLResponse)
 def get_vente_partic(request:Request, user:UserSchema=Depends(login_manager.optional)) :

@@ -1,3 +1,26 @@
+{% macro show_cars_for_location(id,nomModel,marque,description,date_fabrication,etat, image,prix) %}
+    
+        
+        <td>{{ id }}</td>
+
+        <td>{{ nomModel }}</td>
+
+        <td>{{ marque }}</td>
+
+        <td>{{ description }}</td>
+         
+        <td><img src = "../images/{{image}}" style="width:300px;"></td>
+
+
+        <td>{{prix}}</td>
+
+        <td>
+          <a class="btn btn-outline-warning mx-4" href="/achat/fiche/{{id}}">T</a>
+        </td>
+
+{% endmacro %}
+
+
 {% macro show_cars(id,nomModel,marque,description,date_fabrication,etat, image,prix) %}
     
         
@@ -7,10 +30,8 @@
 
         <td>{{ marque }}</td>
 
-        
-        
+    
         <td><img src = "../images/{{image}}" style="width:300px;"></td>
-
 
         <td>{{prix}}</td>
 
@@ -18,10 +39,27 @@
           <a class="btn btn-outline-warning mx-4" href="/achat/fiche/{{id}}">V</a>
         </td>
 
-    
-
 {% endmacro %}
 
+{% macro show_carssearch(id,nomModel,marque,description,date_fabrication,etat, image,prix) %}
+    
+        
+        <td>{{ id }}</td>
+
+        <td>{{ nomModel }}</td>
+
+        <td>{{ marque }}</td>
+
+    
+        <td><img src = "../../images/{{image}}" style="width:300px;"></td>
+
+        <td>{{prix}}</td>
+
+        <td>
+          <a class="btn btn-outline-warning mx-4" href="/achat/fiche/{{id}}">V</a>
+        </td>
+
+{% endmacro %}
 
 
 {% macro show_user(id,email,name,firstname,password,admin, blocked, current_user) %}

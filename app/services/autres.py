@@ -25,3 +25,24 @@ def save_avis(a:avisSchema):
 
         session.add(new_avis)
         session.commit()
+
+def get_all_car_by_keyword(keyword:str, etat:str):
+    with Session() as session:
+        statement = select(Car).where((Car.id.like(f"%{keyword}%")|Car.nomModel.like(f"%{keyword}%")|Car.marque.like(f"%{keyword}%")|Car.vehType.like(f"%{keyword}%"))&(Car.etat.like(etat)))
+        cars = session.scalars(statement).unique().all()
+        carsList = []
+
+        for c in cars :
+            carsList.append(CarSchema(id=c.id, 
+                                        nomModel=c.nomModel, 
+                                        marque=c.marque,
+                                        description=c.description,
+                                        date_fabrication = c.date_fabrication,
+                                        etat=c.etat,
+                                        image = c.image,
+                                        proprietaire_id= c.proprietaire_id,
+                                        prix=c.prix,
+                                        vehType=c.vehType
+                                        ))
+
+        return carsList
