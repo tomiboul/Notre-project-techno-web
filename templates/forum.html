@@ -8,4 +8,23 @@
 <body>
     <div class="container">
         <label for="afficherquestion" class="button">Afficher Question</label>
-        <input type="checkbox" id="afficherque
+        <input type="checkbox" id="afficherquestion" class="cache">
+        <div id="conteneurquestion">
+            <h3> Questions soumises</h3>
+            <ul>
+                {%for question in questions%}
+                    <li>{{question}}</li>
+                {%endfor%}
+            </ul>
+            <form id="formulairequestion" method="post" action="/forum/questions">
+                <h3>Postez la question</h3>
+                <label for ="userquestion">Votre question</label>
+                <textarea id="userquestion" name="userquestion" rows="4" placeholder="Entrez votre question ici.."></textarea>
+                <button type="submit" class="button">Envoyer</button>
+            </form>    
+        </div>
+    </div>
+</body>
+</html>
+
+

@@ -99,6 +99,7 @@ def save_car_for_sale(car:CarSchema):
                       proprietaire_id= car.proprietaire_id,
                       prix=car.prix
         )
+        
         session.add(new_car)
         session.commit()
 

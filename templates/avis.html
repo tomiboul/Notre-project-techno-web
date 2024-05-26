@@ -5,4 +5,29 @@
 {%if current_user is not none%}
     <a href="/autres/ecrireavis" style="display: inline_block; padding: 10px 20px;background-color: #ffc107; color: white; text-decoration:none;border-radius:5px; margin-top: 5%;">Donner mon avis</a>
 {%endif%}
-<div s
+<div style="margin-top: 20px;">
+    {%if user_avis is not none%}
+        <div style="margin-left:2%; font-size: 30px; margin-bottom: 1%;"> Mes avis </div>
+        {%for a in user_avis%}
+        <div style="margin-bottom:15px; border: 1px solid #ddd; border-radius: 5px; padding: 15px; margin-left: 5%; margin-right:5%;"></div>
+            <div>
+                <h3 style="margin:0; margin-left: 5%;">{{a.rating}}</h3>
+                <h5 style="color: #888; margin-left: 5%;">Posté par {{a.idUser}}</h5>
+                <p style="margin-left:5%;">{{a.avis}}</p>
+            </div>
+        </div>
+        {%endfor%}
+    {% endif %}
+
+    <div style="font-size:30px; margin-left:2%;"> Avis des autres utilisateurs </div>
+    {%for a in avis %}
+        <div style="margin-bottom: 15px; border: 1px solid #ddd; border-radius: 5px; padding: 15px;">
+            <div>
+                <h3 style="margin: 0;">{{a.titre}}</h3>
+                <h5 style="color: #888;">posté par {{a.idUser}}</h5>
+                <p>{{a.avis}}</p>
+            </div>
+        </div>
+    {%endfor%}
+</div>
+{%endblock%}
