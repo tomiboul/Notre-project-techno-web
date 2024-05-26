@@ -78,5 +78,7 @@ def avisvoiture(request:Request, car_id:str,user:UserSchema=Depends(login_manage
 
 @router.post('/avisvoiture/{car_id}')
 def avisvoiture(request:Request, car_id:str,commentaire:Annotated[str,Form()],rating:Annotated[str,Form()],user:UserSchema=Depends(login_manager.optional)):
-    return RedirectResponse('/fichedescriptive/{car_id}', status_code=302)
+    new_avis = avisSchema(avisId=str(uuid4()), idUser= user.id, rating= rating, avis = commentaire, idCible=car_id)
+    save_avis(new_avis)
+    return RedirectResponse('/achat/fiche/%s'%car_id, status_code=302)
 

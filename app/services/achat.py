@@ -31,19 +31,21 @@ def get_id_car(car_id : str) :
     with Session() as session :
         statement = select(Car).where(Car.id.like(car_id))
         idCar = session.scalar(statement)
- 
-        car= CarSchema(id=idCar.id, 
-                     nomModel=idCar.nomModel, 
-                    marque=idCar.marque,
-                    description=idCar.description,
-                    date_fabrication = idCar.date_fabrication,
-                    etat=idCar.etat,
-                    image = idCar.image,
-                    proprietaire_id= idCar.proprietaire_id,
-                    vehType=idCar.vehType,
-                    prix=idCar.prix
-                    )   
-        return car
+
+        if (idCar is not None):
+            car= CarSchema(id=idCar.id, 
+                        nomModel=idCar.nomModel, 
+                        marque=idCar.marque,
+                        description=idCar.description,
+                        date_fabrication = idCar.date_fabrication,
+                        etat=idCar.etat,
+                        image = idCar.image,
+                        proprietaire_id= idCar.proprietaire_id,
+                        vehType=idCar.vehType,
+                        prix=idCar.prix
+                        )   
+            return car
+        return None
 
 
 def update_car(updateCar : CarSchema):

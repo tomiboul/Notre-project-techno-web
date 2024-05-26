@@ -58,8 +58,13 @@
 <a class = "btn btn-warning mx-4" href="/achat/catalogue" style="margin-top: 1%;">Retour au catalogue</a>
 
 {%if(current_user is not none)%}
-<a class = "btn btn-warning mx-4" href="/autres/paiement/{{car.id}}" style="margin-top: 1%;">Acheter</a>
-<a class = "btn btn-warning mx-4" href="/autres/avisvoiture/{{car.id}}" style="margin-top: 1%;">Donnez son avis</a>
+{%if car.etat == 'location' %}
+<a class = "btn btn-warning mx-4" href="/autres/paiement/{{car.id}}" style="margin-top: 1%; margin-left: 5%;">Louer</a>
+{%endif%}
+{%if car.etat == 'vente' %}
+<a class = "btn btn-warning mx-4" href="/autres/paiement/{{car.id}}" style="margin-top: 1%; margin-left: 5%;">Acheter</a>
+{%endif%}
+<a class = "btn btn-warning mx-4" href="/autres/avisvoiture/{{car.id}}" style="margin-top: 1%; margin-left: 5%;">Donnez son avis</a>
 {%endif%}
 
 <div style="margin-top: 20px;">
@@ -67,7 +72,7 @@
     {%for a in avis %}
         <div style="margin-bottom: 15px; border: 1px solid #ddd; border-radius: 5px; padding: 15px;">
             <div>
-                <h3 style="margin: 0;">{{a.titre}}</h3>
+                <h3 style="margin: 0;">{{a.rating}}</h3>
                 <h5 style="color: #888;">posté par {{a.idUser}}</h5>
                 <p>{{a.avis}}</p>
             </div>

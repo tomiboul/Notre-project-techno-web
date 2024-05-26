@@ -46,11 +46,11 @@
 <a class = "btn btn-warning mx-4" href="/achat/catalogue" style="margin-top: 1%;">Retour au catalogue</a>
 
 <div class="form-group"></div>
-    <form style ="padding :20px; border: 2px solid rgb(255, 193, 7)" action="/autres/paiement/{{car.id}}" method="post" class="decalageplus" enctype="multipart/form-data">
+    <form style ="padding :20px; border: 2px solid rgb(255, 193, 7)" action="/autres/avisvoiture/{{car.id}}" method="post" class="decalageplus" enctype="multipart/form-data">
         
             
-                <label for="Note">Note</label>
-                <select style = "margin-top : 10px ;" class="form-control" id="Note" name="Note">
+                <label for="rating">Note</label>
+                <select style = "margin-top : 10px ;" class="form-control" id="rating" name="rating">
                   <optgroup label="Choississez un Note"></optgroup>
                   <option>Aucune note sélectionnée</option>
                   <option>☆☆☆☆☆</option>
@@ -65,7 +65,9 @@
                     <textarea id="commentaire" name="commentaire" rows="5" cols="73">
                     </textarea>
             
-        <button type="submit" class="btn btn-warning my-4" href="/autres/avisvoiture/{{car.id}}"> Poster votre avis</button>
+        <button type="submit" class="btn btn-warning my-4" href="/achat/catalogue"> Poster votre avis</button>
 
     </form>
 </div>
+
+{%endblock%}

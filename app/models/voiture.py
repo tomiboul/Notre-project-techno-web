@@ -9,8 +9,6 @@ class Car(Base):
     vehType=mapped_column(String(20))
     nomModel = mapped_column(String(100))
     marque = mapped_column(String(100))
-    """utilité = mapped_column(String(200))
-    prix_location = mapped_column(String(10))"""
     description = mapped_column(String(200)) 
     date_fabrication = mapped_column(String(10))
     etat = mapped_column(String(10))

@@ -31,7 +31,7 @@ def get_vente_partic(request:Request, user:UserSchema=Depends(login_manager.opti
     return templates.TemplateResponse('ventePartic.html', context={'request':request, 'current_user':user})
 
 @router.post('/particulier')
-def vente_partic(request:Request, modele: Annotated[str,Form()], marque:Annotated[str,Form()],description:Annotated[str,Form()],date_fabrication:Annotated[str,Form()],vehType:Annotated[str,Form()],image:UploadFile,prix:Annotated[str,Form()], user:UserSchema=Depends(login_manager.optional)):
+def vente_partic(request:Request, etat:Annotated[str,Form()], modele: Annotated[str,Form()], marque:Annotated[str,Form()],description:Annotated[str,Form()],date_fabrication:Annotated[str,Form()],vehType:Annotated[str,Form()],image:UploadFile,prix:Annotated[str,Form()], user:UserSchema=Depends(login_manager.optional)):
     
     filename = str(uuid4())
     with open("images/%s.png" % filename, "wb") as stockage:
@@ -42,14 +42,15 @@ def vente_partic(request:Request, modele: Annotated[str,Form()], marque:Annotate
                                  marque=marque,
                                  description=description,
                                  date_fabrication=date_fabrication,
-                                 etat='vente',
+                                 #etat mis à vente par défaut normalement
+                                 etat=etat,
                                  image="%s.png" % filename,
                                  prix=prix,
                                  proprietaire_id=user.id,
                                  vehType=vehType
                                  )
     save_car_for_sale(new_car_for_sale)
-    return RedirectResponse('/autres/catalogue', status_code=303)
+    return RedirectResponse('/vente/venteConfirme', status_code=303)
     
 
 @router.get('/professionnel')
