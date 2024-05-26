@@ -61,7 +61,25 @@
 <a class = "btn btn-warning mx-4" href="/autres/paiement/{{car.id}}" style="margin-top: 1%;">Acheter</a>
 <a class = "btn btn-warning mx-4" href="/autres/avisvoiture/{{car.id}}" style="margin-top: 1%;">Donnez son avis</a>
 {%endif%}
-{% endblock %}
+
+<div style="margin-top: 20px;">
+    <div style="font-size:30px; margin-left:2%;"> Avis des autres utilisateurs </div>
+    {%for a in avis %}
+        <div style="margin-bottom: 15px; border: 1px solid #ddd; border-radius: 5px; padding: 15px;">
+            <div>
+                <h3 style="margin: 0;">{{a.titre}}</h3>
+                <h5 style="color: #888;">posté par {{a.idUser}}</h5>
+                <p>{{a.avis}}</p>
+            </div>
+        </div>
+    {%endfor%}
+</div>
+{%endblock%}
+
+
+
+
+
 
 {%block suite %}
 {%endblock%}

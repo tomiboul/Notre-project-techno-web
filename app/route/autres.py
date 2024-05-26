@@ -9,7 +9,7 @@ from app.schemas.users import UserSchema
 from pydantic import ValidationError
 from app.login_manager import login_manager
 from app.services.achat import get_id_car, car_sold
-from app.services.autres import get_all_avis, save_avis
+from app.services.autres import get_all_avis, save_avis, get_all_user_avis
 from app.schemas.avis import avisSchema
 
 
@@ -53,11 +53,12 @@ def getAvisListe(request: Request, user:UserSchema=Depends(login_manager.optiona
     if user is not None:
         avis = get_all_avis()
         align = [0,0,0,0]
-        return templates.TemplateResponse('avis.html', context={"request":request,"current_user":user, "avis":avis, "align":align})
+        user_avis = get_all_user_avis(user.id)
+        return templates.TemplateResponse('avis.html', context={"request":request,"current_user":user, "avis":avis, "align":align,"user_avis":user_avis})
     else :
         return templates.TemplateResponse("exceptions.html", context={'request':request, 'status_code':400,'message':'Vous ne pouvez pas écrire un avis si vous n\'êtes pas connecté','current_user':user})
 
-@router.get('/ecrireavis')
+@router.get('/ecrireavis') 
 def avis(request: Request, user:UserSchema=Depends(login_manager.optional)):
         avis = get_all_avis()
         align = [0,0,0,0]

@@ -22,7 +22,7 @@ def get_car_sale(request: Request,user:UserSchema=Depends(login_manager.optional
         return templates.TemplateResponse("exceptions.html", context={'request':request, 'status_code':400,'message':'Le service de vente n\'est pas disponible pour les utilisateurs non connectés','current_user':user})
 
 @router.get('/venteConfirme', response_class=HTMLResponse)
-def entretien(request: Request, user:UserSchema=Depends(login_manager.optional)):
+def venteconfirm(request: Request, user:UserSchema=Depends(login_manager.optional)):
     return templates.TemplateResponse('venteConfirme.html', context={"request":request, "current_user":user})
 
     
@@ -49,7 +49,7 @@ def vente_partic(request:Request, modele: Annotated[str,Form()], marque:Annotate
                                  vehType=vehType
                                  )
     save_car_for_sale(new_car_for_sale)
-    return RedirectResponse('/autres/home', status_code=303)
+    return RedirectResponse('/autres/catalogue', status_code=303)
     
 
 @router.get('/professionnel')
@@ -57,6 +57,6 @@ def get_vente_professionnel(request:Request,user:UserSchema=Depends(login_manage
     return templates.TemplateResponse('venteProfess.html',context={'request':request,'current_user':user})
 
 @router.post('/professionnel')
-def get_vente_professionnel(request:Request,user:UserSchema=Depends(login_manager.optional)):
+def post_vente_professionnel(request:Request,user:UserSchema=Depends(login_manager.optional)):
     pass
 

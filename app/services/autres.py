@@ -46,3 +46,28 @@ def get_all_car_by_keyword(keyword:str, etat:str):
                                         ))
 
         return carsList
+
+        
+def get_all_user_avis(user_id:str):
+    with Session() as session :
+        statement = select(Avis).where(Avis.idUser.like(user_id))
+        avis = session.scalars(statement).unique().all()
+
+        avisListe = []
+
+        for a in avis :
+            avisListe.append(avisSchema(avisId= a.avisId, avis=a.avis, rating= a.rating, idUser=a.idUser, idCible=a.idCible))
+
+        return avisListe
+
+def get_all_avis_from_car(car_id:str):
+    with Session() as session :
+        statement = select(Avis).where(Avis.idCible.like(car_id))
+        avis = session.scalars(statement).unique().all()
+
+        avisListe = []
+
+        for a in avis :
+            avisListe.append(avisSchema(avisId= a.avisId, avis=a.avis, rating= a.rating, idUser=a.idUser, idCible=a.idCible))
+
+        return avisListe

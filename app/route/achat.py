@@ -9,7 +9,8 @@ from fastapi.templating import Jinja2Templates
 from pydantic import ValidationError
 from app.login_manager import login_manager
 from app.services.achat import get_all_car_for_sale, get_id_car
-from app.services.autres import get_all_car_by_keyword
+from app.services.autres import get_all_car_by_keyword, get_all_avis_from_car
+
 
 
 router = APIRouter(prefix="/achat", tags=["Achat"])
@@ -25,7 +26,8 @@ def catalogue(request:Request, user:UserSchema = Depends(login_manager.optional)
 @router.get("/fiche/{car_id}",response_class=HTMLResponse)
 def fiche(request : Request, car_id:str ,user:UserSchema=Depends(login_manager.optional)):
     car = get_id_car(car_id)
-    return templates.TemplateResponse('fichedescriptive.html',context={"request":request,"car":car, "current_user":user})
+    avis = get_all_avis_from_car(car_id)
+    return templates.TemplateResponse('fichedescriptive.html',context={"request":request,"car":car, "current_user":user, "avis":avis})
 
 
 @router.post("/catalogue/search")

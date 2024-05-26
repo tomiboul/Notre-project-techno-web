@@ -71,3 +71,9 @@ def update_car_for_location(updateCar : CarSchema):
                 old_car.prix = updateCar.prix
                 
         session.commit()
+
+questions=[]
+def save_question(question:str):
+    questions.append(question)
+def get_all_questions():
+    return questions
