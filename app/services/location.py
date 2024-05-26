@@ -3,6 +3,8 @@ from fastapi import HTTPException, status
 from app.database import Session
 from sqlalchemy import select
 from app.models.voiture import Car
+from app.schemas.question import questionSchema
+from app.models.question import Question
 
 
 
@@ -72,8 +74,24 @@ def update_car_for_location(updateCar : CarSchema):
                 
         session.commit()
 
-questions=[]
-def save_question(question:str):
-    questions.append(question)
+
+def save_question(question:questionSchema):
+    with Session() as session:
+        data = Question(id=question.id, userId=question.userId, reponse=question.reponse, question=question.question)
+
+        session.add(data)
+        session.commit()
+
+
 def get_all_questions():
-    return questions
+    with Session() as session:
+        statement = select(Question)
+
+        qu = session.scalars(statement).unique().all()
+
+        questionList = []
+
+        for q in qu :
+            questionList.append(questionSchema(id=q.id, userId=q.userId, reponse=q.reponse, question=q.question))
+
+        return questionList

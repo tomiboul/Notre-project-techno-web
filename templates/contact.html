@@ -18,8 +18,10 @@
     <div class ="col" style="color:rgb(255, 193, 7); background-color: rgb(50,50,50); padding:1%;">0444 0220 2025</div>
 </div>
 <div class="row" style="margin-left:10%; font-size: 20px; margin-right: 10%; margin-top: 2%;">
-    <div class ="col" style="color:white; background-color: rgb(50,50,50); padding:1%;">Ou posez nous une question directement via le site ?
-    <button class="btn btn-warning my-4" href="/forum" style="right: 30px;"> Direction le forum 😀</button></div>
+    <div class ="col" style="color:white; background-color: rgb(50,50,50); padding:1%;">Ou posez nous une question directement via le site ?</div>
+    {%if user is not none%}
+    <a class="btn btn-warning" href="/forum/questions">Aller sur le forum ! 😄 </a>
+    {%endif%}
 </div>
 
 <div style="margin-left: 20%; font-size: 40px; margin-top: 2%;">Nos réseaux</div>

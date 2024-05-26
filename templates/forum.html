@@ -1,19 +1,14 @@
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Question interaction</title>
-    <link rel="stylesheet" href="styles.css">
-</head>
+{% extends 'base.html' %}
+{%block content%}
 <body>
     <div class="container">
-        <label for="afficherquestion" class="button">Afficher Question</label>
-        <input type="checkbox" id="afficherquestion" class="cache">
         <div id="conteneurquestion">
             <h3> Questions soumises</h3>
             <ul>
                 {%for question in questions%}
-                    <li>{{question}}</li>
+                <div style="margin-bottom:15px; border: 1px solid #ddd; border-radius: 1px; padding: 15px; margin-left: -5%; margin-right:-5%;">
+                    <h3 {{}}
+                </div>
                 {%endfor%}
             </ul>
             <form id="formulairequestion" method="post" action="/forum/questions">
@@ -21,10 +16,10 @@
                 <label for ="userquestion">Votre question</label>
                 <textarea id="userquestion" name="userquestion" rows="4" placeholder="Entrez votre question ici.."></textarea>
                 <button type="submit" class="button">Envoyer</button>
-            </form>    
+            </form>
         </div>
     </div>
 </body>
-</html>
+{%endblock%}
 
 

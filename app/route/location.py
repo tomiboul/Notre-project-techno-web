@@ -18,21 +18,6 @@ from app.services.autres import get_all_car_by_keyword
 router = APIRouter(prefix="/location", tags=["location"])
 templates = Jinja2Templates(directory="./templates")
 
-"""
-@router.get('/location',response_class=HTMLResponse )
-def catalogue_location(request: Request,  user: UserSchema = Depends(login_manager.optional)):
-       if user is not None :
-          if user.blocked == True:
-            return templates.TemplateResponse(
-            "blockedRedirect.html",
-            context={'request': request, 'current_user' : user})
-    
-       cars = services.get_all_car_for_location()
-       number_cars = str(len(cars))
-       return templates.TemplateResponse(
-        "location.html",
-        context={'request': request, 'cars': cars, 'number_cars' : number_cars, 'current_user' : user,'extra':'location'}
-    )"""
 
 @router.get('/catalogue',response_class=HTMLResponse)
 def catalogue(request:Request, user:UserSchema = Depends(login_manager.optional)):

@@ -12,13 +12,14 @@ from app.route.achat import router as achat_router
 from app.route.users import router as users_router 
 from app.route.location import router as location_router
 from app.route.vente import router as vente_router
-
+from app.route.question import router as question_router
 app = FastAPI(title="Bomel et compagnie")
 app.include_router(autres_router)
 app.include_router(achat_router)
 app.include_router(users_router)
 app.include_router(location_router)
 app.include_router(vente_router)
+app.include_router(question_router)
 
 app.mount("/static", StaticFiles(directory="././static"), name='static')
 app.mount("/images", StaticFiles(directory="././images"), name='images')

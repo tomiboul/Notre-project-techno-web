@@ -34,7 +34,7 @@ def paiement(request : Request, id:str, adresse:Annotated[str,Form()], titulaire
 
 @router.get('/contact', response_class=HTMLResponse)
 def contact(request:Request, user:UserSchema=Depends(login_manager.optional)):
-    return templates.TemplateResponse('contact.html', context={"request":request,"current_user":user})
+    return templates.TemplateResponse('contact.html', context={"request":request,"user":user})
 
 @router.get('/entretien', response_class=HTMLResponse)
 def entretien(request: Request, user:UserSchema=Depends(login_manager.optional)):

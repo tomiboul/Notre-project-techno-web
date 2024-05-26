@@ -9,10 +9,9 @@ from app.schemas.users import UserSchema
 from app import login_manager
 from app.login_manager import login_manager
 import app.services.location as services
+from app.schemas.question import questionSchema
 
-
-
-router = APIRouter(prefix="/forum", tags=["forum"])
+router = APIRouter(prefix="/forum", tags=["Forum"])
 templates = Jinja2Templates(directory="./templates")
 
 @router.get('/questions',response_class=HTMLResponse )
@@ -21,7 +20,11 @@ def questionnement(request: Request,  user: UserSchema = Depends(login_manager.o
     return templates.TemplateResponse("forum.html", context={'request': request, 'current_user':user,'questions':questions})
 
 @router.post('/questions',response_class=HTMLResponse)
-def post_question(request: Request, userquestion: Annotated[str, Form()], userSchema=Depends(login_manager.optional)):
-    services.save_question(userquestion)
-    return RedirectResponse(url='/forum/questions',status_code=status.HTTP_303_SEE_OTHER)
+def post_question(request: Request, userquestion: Annotated[str, Form()], user : UserSchema=Depends(login_manager.optional)):
+    if user is not None:
+        data = questionSchema(id=str(uuid4()), userId = user.id, question= userquestion, reponse ="")
+
+
+        services.save_question(data)
+        return RedirectResponse(url='./questions',status_code=status.HTTP_303_SEE_OTHER)
 
