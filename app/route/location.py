@@ -22,12 +22,12 @@ templates = Jinja2Templates(directory="./templates")
 @router.get('/catalogue',response_class=HTMLResponse)
 def catalogue(request:Request, user:UserSchema = Depends(login_manager.optional)):
     cars = get_all_car_for_location()
-    return templates.TemplateResponse('location.html', context={'request':request,'current_user':user,'cars':cars,'extra':'location', 'number_cars':len(cars)})
+    return templates.TemplateResponse('location.html', context={'request':request,'user':user,'cars':cars,'extra':'location', 'number_cars':len(cars)})
 
 @router.get("/fiche/{car_id}",response_class=HTMLResponse)
 def fiche(request : Request, car_id:str ,user:UserSchema=Depends(login_manager.optional)):
     car = get_id_car(car_id)
-    return templates.TemplateResponse('fichedescriptive.html',context={"request":request,"car":car, "current_user":user})
+    return templates.TemplateResponse('fichedescriptive.html',context={"request":request,"car":car, "user":user})
 
 @router.post("/catalogue/search")
 def search(request:Request, keyword:Annotated[str,Form()], user:UserSchema=Depends(login_manager.optional)):

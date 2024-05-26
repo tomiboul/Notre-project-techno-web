@@ -4,14 +4,14 @@
 <h1 style="margin-left: 45%; margin-top: 3%;"> Profil </h1>
 
 <ul class="list-group" style="margin-left: 30%; margin-right: 30%;">
-    <li class = list-group-item>Id : {{current_user.id}}</li>
-    <li class = list-group-item>Nom : {{current_user.name}}</li>
-    <li class = list-group-item>Prénom : {{current_user.firstname}}</li>
-    <li class = list-group-item>Email : {{current_user.email}}</li>
-    <li class = list-group-item>Numéro de téléphone : {{current_user.phone}}</li>
-    <li class = list-group-item>Adresse : {{current_user.adresse}}</li>
-    <li class = list-group-item>Bloqué : {{current_user.blocked}}</li>
-    <li class = list-group-item>Permissions d'administrateur : {{current_user.admin}}</li>  
+    <li class = list-group-item>Id : {{user.id}}</li>
+    <li class = list-group-item>Nom : {{user.name}}</li>
+    <li class = list-group-item>Prénom : {{user.firstname}}</li>
+    <li class = list-group-item>Email : {{user.email}}</li>
+    <li class = list-group-item>Numéro de téléphone : {{user.phone}}</li>
+    <li class = list-group-item>Adresse : {{user.adresse}}</li>
+    <li class = list-group-item>Bloqué : {{user.blocked}}</li>
+    <li class = list-group-item>Permissions d'administrateur : {{user.admin}}</li>  
     <a><a style = "text-align: centered" class ="btn btn-warning mx-4" href="/users/password">Changer de mot de passe</a></a>
     <a><a style = "text-align: centered" class ="btn btn-warning mx-4" href="/users/profilChange">Changer les infos de profil</a></a>  
 </ul>

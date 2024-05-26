@@ -18,7 +18,7 @@ templates = Jinja2Templates(directory="./templates")
 def login_route_demande(request: Request, user:UserSchema =Depends(login_manager.optional)):
     return templates.TemplateResponse(
         "login.html",
-        context={'request': request, 'current_user':user}
+        context={'request': request, 'user':user}
     )
 
 @router.post("/login")
@@ -34,7 +34,7 @@ def login_route(
     user = get_user_by_email(email)
    
     if user is None or user.hashed_password != hashed_password:
-        return templates.TemplateResponse('exceptions.html', context={'request':request, 'status_code':401,'current_user':user, 'message':'L\'adresse email ou le mot de passe n\'est pas bon'})
+        return templates.TemplateResponse('exceptions.html', context={'request':request, 'status_code':401,'user':user, 'message':'L\'adresse email ou le mot de passe n\'est pas bon'})
         
 
     
@@ -56,7 +56,7 @@ def login_route(
 def ask_logout(request : Request, user: UserSchema = Depends(login_manager.optional)) :
     return templates.TemplateResponse(
         'logout.html',
-        context = {'request': request, 'current_user':user}
+        context = {'request': request, 'user':user}
     )
 
 @router.post('/logout')
@@ -79,7 +79,7 @@ def current_user_route(
 ):
     return templates.TemplateResponse(
         "profil.html",
-        context={'request':request,"current_user":user}
+        context={'request':request,"user":user}
     )
     
 
@@ -87,7 +87,7 @@ def current_user_route(
 def signin_ask(request : Request, user:UserSchema=Depends(login_manager.optional)):
     return templates.TemplateResponse(
         "signin.html",
-        context = {'request': request, 'current_user':user}
+        context = {'request': request, 'user':user}
     )
 
 @router.post('/signin')
@@ -132,14 +132,14 @@ def get_user_list(request : Request, user: UserSchema = Depends(login_manager)) 
             number_users=str(len(users))
             return templates.TemplateResponse(
                 "usersList.html",
-                context={'request': request, 'users': users, 'number_users' : number_users, 'current_user' : user}
+                context={'request': request, 'users': users, 'number_users' : number_users, 'user' : user}
             )
         else :
             return templates.TemplateResponse('exceptions.html', context={'status_code': 302, 'message': 'Vous n\'avez pas le droit d\'accéder à la liste des utilisateurs', 'request': request, 'redir':'connexion'})
     else:
         return templates.TemplateResponse(
             "blockedRedirect.html",
-            context={'request': request, 'current_user' : user})
+            context={'request': request, 'user' : user})
     
 @router.get('/block/{id}')
 def ask_block_user(request : Request, id : str, user: UserSchema = Depends(login_manager)):
@@ -161,7 +161,7 @@ def block(request : Request,id : str):
 def passwordchange_ask(request : Request, user:UserSchema = Depends(login_manager)) :
     return templates.TemplateResponse(
         'passwordchange.html',
-        context={'request':request, 'current_user':user}
+        context={'request':request, 'user':user}
     )
 
 @router.post('/password')
@@ -180,7 +180,7 @@ def passwordchange(request : Request, password : Annotated[str,Form()], new_pass
     
 @router.get('/profilChange')
 def profilchangeask(request : Request, user:UserSchema = Depends(login_manager)) :
-    return templates.TemplateResponse('profilChange.html', context={'request':request, 'current_user':user})
+    return templates.TemplateResponse('profilChange.html', context={'request':request, 'user':user})
 
 @router.post('/profilChange')
 def profilChange(request : Request, email : Annotated[str,Form()], name : Annotated[str,Form()], firstname : Annotated[str,Form()] ,user:UserSchema = Depends(login_manager)) :

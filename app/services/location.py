@@ -95,3 +95,12 @@ def get_all_questions():
             questionList.append(questionSchema(id=q.id, userId=q.userId, reponse=q.reponse, question=q.question))
 
         return questionList
+    
+def save_response(response:str, q_id:str):
+    with Session() as session:
+        statement = select(Question).where(Question.id.like(q_id))
+        quest = session.scalar(statement)
+
+        quest.reponse = response
+        session.commit()
+

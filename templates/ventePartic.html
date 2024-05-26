@@ -68,14 +68,14 @@
           <input type="file" class="form-control-file" id="image" name="image">
         </div>  
 
-        
-        <label for="etat" class="my-3">etat ("location" ou "vente")</label>
-        <input type="textarea" class="form-control" id="etat" name="etat" placeholder="Aucun" value="" />
-
-
-
-
-
+        <label for="etat" class="my-3"> Faire vendre ou faire louer votre véhicule ?</label>
+                <select style = "margin-top : 10px ;" class="form-control" id="etat" name="etat">
+                  <optgroup label="Choississez l'état en question"></optgroup>
+                  <option>Aucun état selectionné</option>
+                  <optgroup label="Etat possible :"></optgroup>
+                  <option>location</option> 
+                  <option>vente</option> 
+                </select>
 
         <button class="btn btn-warning my-4" href="/vente/venteConfirme" type="submit">Ajouter ma voiture au catalogue</button>
 

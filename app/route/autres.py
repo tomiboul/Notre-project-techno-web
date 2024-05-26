@@ -19,7 +19,7 @@ templates = Jinja2Templates(directory="./templates")
 
 @router.get('/home')
 def home(request : Request, user:UserSchema = Depends(login_manager.optional)):  
-    return templates.TemplateResponse('home.html', context={'request':request, 'current_user':user})
+    return templates.TemplateResponse('home.html', context={'request':request, 'user':user})
 
 @router.get('/paiement/{id}')
 def paiement(request : Request, id:str,user:UserSchema = Depends(login_manager.optional)):
@@ -38,7 +38,7 @@ def contact(request:Request, user:UserSchema=Depends(login_manager.optional)):
 
 @router.get('/entretien', response_class=HTMLResponse)
 def entretien(request: Request, user:UserSchema=Depends(login_manager.optional)):
-    return templates.TemplateResponse('entretien.html', context={"request":request, "current_user":user})
+    return templates.TemplateResponse('entretien.html', context={"request":request, "user":user})
 
 @router.post('/entretien')
 def entretien_rendezvous(request:Request, date:Annotated[str, Form()], email:Annotated[str,Form()], heure:Annotated[str,Form()],user:UserSchema=Depends(login_manager.optional)) :
@@ -46,7 +46,7 @@ def entretien_rendezvous(request:Request, date:Annotated[str, Form()], email:Ann
 
 @router.get('/entretienConfirme', response_class=HTMLResponse)
 def entretien(request: Request, user:UserSchema=Depends(login_manager.optional)):
-    return templates.TemplateResponse('entretienConfirme.html', context={"request":request, "current_user":user})
+    return templates.TemplateResponse('entretienConfirme.html', context={"request":request, "user":user})
 
 @router.get('/avis')
 def getAvisListe(request: Request, user:UserSchema=Depends(login_manager.optional)):
@@ -62,7 +62,7 @@ def getAvisListe(request: Request, user:UserSchema=Depends(login_manager.optiona
 def avis(request: Request, user:UserSchema=Depends(login_manager.optional)):
         avis = get_all_avis()
         align = [0,0,0,0]
-        return templates.TemplateResponse('ecrireavis.html', context={"request":request,"current_user":user, "avis":avis, "align":align})
+        return templates.TemplateResponse('ecrireavis.html', context={"request":request,"user":user, "avis":avis, "align":align})
     
 @router.post('/ecrireavis')
 def avis(request: Request, rating:Annotated[str,Form()], commentaire:Annotated[str,Form()], user:UserSchema=Depends(login_manager.optional)):
@@ -74,7 +74,7 @@ def avis(request: Request, rating:Annotated[str,Form()], commentaire:Annotated[s
 @router.get('/avisvoiture/{car_id}')
 def avisvoiture(request:Request, car_id:str,user:UserSchema=Depends(login_manager.optional)):
     car = get_id_car(car_id)
-    return templates.TemplateResponse('avisvoiture.html',context={"request":request,"car":car, "current_user":user})
+    return templates.TemplateResponse('avisvoiture.html',context={"request":request,"car":car, "user":user})
 
 @router.post('/avisvoiture/{car_id}')
 def avisvoiture(request:Request, car_id:str,commentaire:Annotated[str,Form()],rating:Annotated[str,Form()],user:UserSchema=Depends(login_manager.optional)):
